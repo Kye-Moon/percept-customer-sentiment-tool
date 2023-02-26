@@ -5,7 +5,7 @@ import DropdownProfile from "src/components/DropdownProfile";
 
 const Header = ({sidebarOpen, setSidebarOpen}) => {
   return (
-    <header className="sticky top-0 bg-white border-b border-slate-200 z-30">
+    <header className="sticky top-0 bg-blue-600 drop-shadow  z-30">
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 -mb-px">
 
