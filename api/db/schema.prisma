@@ -8,7 +8,7 @@ generator client {
   binaryTargets = "native"
 }
 
-model RecommendedMention {
+model recommended_mention {
   id    Int     @id @default(autoincrement())
   createAt String
   externalReference String @unique
@@ -17,4 +17,7 @@ model RecommendedMention {
   username String
   userDescription String?
   profileImageUrl String
+  archived Boolean? @default(false)
+  favourite Boolean? @default(false)
+  onWall Boolean? @default(false)
 }
