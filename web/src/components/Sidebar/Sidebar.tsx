@@ -1,11 +1,12 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {NavLink, routes} from "@redwoodjs/router";
+import {Link, NavLink, routes} from "@redwoodjs/router";
 import {useLocation} from "@redwoodjs/router";
 import InboxIconFilled from "../../images/svgs/InboxIconFilled.svg"
 import RectangleGroupIconFilled from "../../images/svgs/RectangleGroupIconFilled.svg"
 import StarIconFilled from '../../images/svgs/StarIconFilled.svg'
 import DashboardIcon from '../../images/svgs/Squares-2x2IconFilled.svg'
 import {SideBarMenuItem} from "./SideBarMenuItem"
+import DropdownProfile from "src/components/DropdownProfile";
 
 function Sidebar({sidebarOpen, setSidebarOpen}) {
 
@@ -62,7 +63,7 @@ function Sidebar({sidebarOpen, setSidebarOpen}) {
       <div
         id="sidebar"
         ref={sidebar}
-        className={`flex bg-neutral flex-col text-white  absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-64 lg:w-20 lg:sidebar-expanded:!w-64 2xl:!w-64 shrink-0 bg-white p-4 transition-all duration-200 ease-in-out ${
+        className={`flex bg-base-100 py-8 ml-28 flex-col text-white  absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-72 lg:w-72 lg:sidebar-expanded:!w-80 2xl:!w-64 shrink-0 bg-white p-4 transition-all duration-200 ease-in-out ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-64'
         }`}
       >
@@ -78,17 +79,41 @@ function Sidebar({sidebarOpen, setSidebarOpen}) {
         <div className="space-y-8">
           {/* Pages group */}
           <div>
-            <ul className="mt-3 px-3 space-y-12">
-              <SideBarMenuItem Icon={DashboardIcon} title={"Dashboard"} to={routes.dashboard()}/>
-              <SideBarMenuItem Icon={InboxIconFilled} title={"New Mentions"} to={routes.newMentions()}/>
-              <SideBarMenuItem Icon={StarIconFilled} title={"Favourites"} to={routes.favourites()}/>
-              <SideBarMenuItem Icon={RectangleGroupIconFilled} title={"Your Reviews"} to={routes.yourReviews()}/>
+
+            <ul className="mt-3  space-y-12">
+              <div className={"px-2"}>
+                <Link className={"btn btn-sm btn-outline "} to={routes.dashboard()}> Dashboard</Link>
+              </div>
+              <div className="mt-3  space-y-6">
+                <SideBarMenuItem Icon={InboxIconFilled} title={"Inbox"} to={routes.newMentions()}/>
+                <SideBarMenuItem Icon={RectangleGroupIconFilled} title={"Your Review Wall"} to={routes.yourReviews()}/>
+                <SideBarMenuItem Icon={RectangleGroupIconFilled} title={"Embeds"} to={""}/>
+                <SideBarMenuItem Icon={RectangleGroupIconFilled} title={"Analytics"} to={routes.yourReviews()}/>
+                <SideBarMenuItem Icon={RectangleGroupIconFilled} title={"Links"} to={routes.yourReviews()}/>
+                <SideBarMenuItem Icon={RectangleGroupIconFilled} title={"Settings"} to={routes.yourReviews()}/>
+              </div>
+
             </ul>
           </div>
         </div>
 
+        <div className=" hidden lg:inline-flex justify-start mt-auto">
+          <div className="dropdown dropdown-top">
+            <label tabIndex={0} className="btn  btn-circle btn-outline">MS</label>
+            <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-primary rounded-box w-52">
+              <li><a>Item 1</a></li>
+              <li><a>Settings</a></li>
+            </ul>
+          </div>
+
+
+        </div>
+
+
         {/* Expand / collapse button */}
         <div className="pt-3 hidden lg:inline-flex 2xl:hidden justify-end mt-auto">
+          {/* Header: Right side */}
+
           <div className="px-3 py-2">
             <button onClick={() => setSidebarExpanded(!sidebarExpanded)}>
               <span className="sr-only">Expand / collapse sidebar</span>

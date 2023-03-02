@@ -18,6 +18,7 @@ export const schema = gql`
   }
 
   enum QueryFilter{
+    ALL
     ARCHIVED
     FAVOURITE
     ONWALL
@@ -27,7 +28,7 @@ export const schema = gql`
     recommendedMentions: [RecommendedMention!]! @requireAuth
     recommendedMention(id: Int!): RecommendedMention @requireAuth
     fetchNewRecommendedMentions: FetchedCount @skipAuth # add user id to fetch params
-    filteredRecommendedMentions(filter:QueryFilter!, filterValue:Boolean!): [RecommendedMention!]! @skipAuth
+    filteredRecommendedMentions(filter:QueryFilter): [RecommendedMention!]! @skipAuth
   }
 
   input CreateRecommendedMentionInput {
@@ -52,6 +53,8 @@ export const schema = gql`
 
   type Mutation {
     favouriteReview(id:Int!): RecommendedMention! @skipAuth
+    archiveReview(id:Int!): RecommendedMention! @skipAuth
+    addReviewToWall(id:Int!): RecommendedMention! @skipAuth
 
     ## CRUD #####
     createRecommendedMention(input: CreateRecommendedMentionInput!): RecommendedMention! @requireAuth

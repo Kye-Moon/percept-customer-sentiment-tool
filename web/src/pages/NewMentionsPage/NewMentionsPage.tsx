@@ -3,11 +3,22 @@ import {MetaTags} from '@redwoodjs/web'
 import {PlusIcon} from "@heroicons/react/24/solid";
 //@ts-ignore    Dunno here just a redwood thing with cells.
 import ReviewsGridCell from "src/components/ReviewsGridCell/ReviewsGridCell";
+import {useState} from "react";
+
+enum FilterType {
+  ALL = "ALL",
+  ARCHIVED = "ARCHIVED",
+  FAVOURITE = "FAVOURITE",
+  ONWALL = "ONWALL"
+}
 
 const NewMentionsPage = () => {
+  const [filter, setFilter] = useState(FilterType.ALL)
+
   return (
     <div>
       <MetaTags title="NewMentions" description="NewMentions page"/>
+
 
       <div className="px-2 sm:px-6 py-8 w-full max-w-9xl mx-auto">
         <div className="sm:flex sm:justify-between sm:items-center mb-8">
@@ -28,20 +39,17 @@ const NewMentionsPage = () => {
         </div>
         {/* Filters */}
         <div className="mb-4 border-b border-slate-200">
-          <ul className="text-sm font-medium flex flex-nowrap -mx-4 sm:-mx-6 lg:-mx-8 overflow-x-scroll no-scrollbar">
-            <li
-              className="pb-3 mr-6 last:mr-0 first:pl-4 sm:first:pl-6 lg:first:pl-8 last:pr-4 sm:last:pr-6 lg:last:pr-8">
-              <Link className="text-indigo-500 whitespace-nowrap" to="#0">All</Link>
-            </li>
-            <li
-              className="pb-3 mr-6 last:mr-0 first:pl-4 sm:first:pl-6 lg:first:pl-8 last:pr-4 sm:last:pr-6 lg:last:pr-8">
-              <Link className="text-slate-500 hover:text-slate-600 whitespace-nowrap" to="#0">Suggested</Link>
-            </li>
-          </ul>
+          <div className="tabs">
+            <a className={`tab font-semibold text-white ${filter === FilterType.ALL ? 'tab-active text-secondary' : ''}`} onClick={() => setFilter(FilterType.ALL)}>All</a>
+            <a className={`tab font-semibold text-white ${filter === FilterType.FAVOURITE ? 'tab-active text-secondary': ''}`} onClick={() => setFilter(FilterType.FAVOURITE)}>Favourites</a>
+            <a className={`tab font-semibold text-white ${filter === FilterType.ARCHIVED ? 'tab-active text-secondary' : ''}`} onClick={() => setFilter(FilterType.ARCHIVED)}>Archived</a>
+          </div>
         </div>
         {/* Reviews */}
-        <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto columns-2 md:columns-3 lg:columns-4">
-          <ReviewsGridCell/>
+        <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto columns-2 md:columns-3 lg:columns-1 ">
+          <ReviewsGridCell
+            filter={filter}
+          />
         </div>
       </div>
     </div>

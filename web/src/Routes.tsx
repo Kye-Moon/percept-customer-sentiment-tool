@@ -9,7 +9,6 @@
 
 import {Router, Route, Set} from '@redwoodjs/router'
 import HomePage from "src/pages/HomePage/HomePage";
-import FavouritesPage from './pages/FavouritesPage/FavouritesPage';
 import NewMentionsPage from './pages/NewMentionsPage/NewMentionsPage';
 import YourReviewsPage from './pages/YourReviewsPage/YourReviewsPage';
 import AppLayout from "src/layouts/AppLayout/AppLayout";
@@ -17,11 +16,10 @@ import AppLayout from "src/layouts/AppLayout/AppLayout";
 const Routes = () => {
   return (
     <Router>
+      <Route path="/dashboard" page={DashboardPage} name="dashboard"/>
       <Set wrap={AppLayout}>
         <Route path="/your-reviews" page={YourReviewsPage} name="yourReviews"/>
-        <Route path="/favourites" page={FavouritesPage} name="favourites"/>
         <Route path="/new-mentions" page={NewMentionsPage} name="newMentions"/>
-        <Route path="/dashboard" page={DashboardPage} name="dashboard"/>
         <Route path="/" page={HomePage} name="home"/>
       </Set>
       <Route notfound page={NotFoundPage}/>
