@@ -8,24 +8,27 @@ export const schema = gql`
     username: String!
     userDescription: String
     profileImageUrl: String!
+    archived: Boolean
+    favourite: Boolean
+    onWall: Boolean
   }
-  type NewRecommendedMention {
-      createAt: String!
-      externalReference: String
-      body: String!
-      mentionSource: String!
-      username: String!
-      userDescription: String
-      profileImageUrl: String!
-  }
+
   type FetchedCount{
     count: Int!
+  }
+
+  enum QueryFilter{
+    ALL
+    ARCHIVED
+    FAVOURITE
+    ONWALL
   }
 
   type Query {
     recommendedMentions: [RecommendedMention!]! @requireAuth
     recommendedMention(id: Int!): RecommendedMention @requireAuth
     fetchNewRecommendedMentions: FetchedCount @skipAuth # add user id to fetch params
+    filteredRecommendedMentions(filter:QueryFilter): [RecommendedMention!]! @skipAuth
   }
 
   input CreateRecommendedMentionInput {
@@ -49,13 +52,14 @@ export const schema = gql`
   }
 
   type Mutation {
-    createRecommendedMention(
-      input: CreateRecommendedMentionInput!
-    ): RecommendedMention! @requireAuth
-    updateRecommendedMention(
-      id: Int!
-      input: UpdateRecommendedMentionInput!
-    ): RecommendedMention! @requireAuth
+    favouriteReview(id:Int!): RecommendedMention! @skipAuth
+    archiveReview(id:Int!): RecommendedMention! @skipAuth
+    addReviewToWall(id:Int!): RecommendedMention! @skipAuth
+
+    ## CRUD #####
+    createRecommendedMention(input: CreateRecommendedMentionInput!): RecommendedMention! @requireAuth
+    createManyRecommendedMentions(input: [CreateRecommendedMentionInput!]!): FetchedCount! @requireAuth
+    updateRecommendedMention(id: Int! input: UpdateRecommendedMentionInput!): RecommendedMention! @requireAuth
     deleteRecommendedMention(id: Int!): RecommendedMention! @requireAuth
   }
 `

@@ -11,8 +11,9 @@ interface SideBarMenuItemProps {
 export const SideBarMenuItem = ({title, Icon, to}: SideBarMenuItemProps) => {
   return (
     <div>
-      <Link
-        className={`block text-white hover:text-primary truncate transition duration-150`} to={to} >
+      <NavLink
+        className={`block text-white hover:text-primary truncate transition duration-150`} to={to}
+        activeClassName={"text-primary"} >
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Icon className={"w-6 h-6"}/>
@@ -22,7 +23,7 @@ export const SideBarMenuItem = ({title, Icon, to}: SideBarMenuItemProps) => {
                             </span>
           </div>
         </div>
-      </Link>
+      </NavLink>
     </div>
   )
 }
