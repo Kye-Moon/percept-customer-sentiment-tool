@@ -13,14 +13,13 @@
     ]
   },
   "dependencies": {
+    "@auth0/auth0-spa-js": "1.22.5",
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
     "@heroicons/react": "^2.0.16",
+    "@redwoodjs/auth": "3.8.0",
     "@redwoodjs/forms": "3.8.0",
     "@redwoodjs/router": "3.8.0",
     "@redwoodjs/web": "3.8.0",
-    "chart.js": "^4.2.0",
-    "chartjs-adapter-moment": "^1.0.1",
-    "chartjs-node": "^1.7.1",
     "daisyui": "^2.51.1",
     "moment": "^2.29.4",
     "prop-types": "15.8.1",

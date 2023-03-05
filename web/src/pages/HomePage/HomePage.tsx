@@ -18,8 +18,6 @@ const HomePage = () => {
 
         {/*  Site header */}
         <Header />
-
-
         <main className="grow">
 
 

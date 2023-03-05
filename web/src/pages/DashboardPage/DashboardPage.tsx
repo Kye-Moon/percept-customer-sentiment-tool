@@ -1,33 +1,35 @@
-import {Link, routes} from '@redwoodjs/router'
 import {MetaTags} from '@redwoodjs/web'
-import {useState} from "react";
-import Sidebar from "src/components/Sidebar/Sidebar";
 import Header from "src/components/Header/Header";
 import WelcomeBanner from "src/components/WelcomeBanner/WelcomeBanner";
-import ReviewWall from "src/components/ReviewWall/ReviewWall";
+//@ts-ignore
+import CampaignsCell from "src/components/CampaignsCell/CampaignsCell";
+import {Link,routes} from "@redwoodjs/router";
+import {useAuth} from "@redwoodjs/auth";
+
 
 const DashboardPage = () => {
-
+const {userMetadata} = useAuth()
   return (
     <>
       <MetaTags title="Dashboard" description="Dashboard page"/>
+      <div className={"flex flex-col"}>
+        <Header sidebarOpen={undefined} setSidebarOpen={undefined}/>
+        <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
+          {/* Welcome banner */}
+          <WelcomeBanner/>
+          <div className={"divider"}></div>
+          {/* Cards */}
+          <div className={"flex justify-between py-2 mb-12 "}>
+            <h1 className={"text-2xl font-semibold"}>Your Review Campaigns</h1>
+            <Link className={"btn btn-primary"} to={routes.createCampaign()}>Create New Campaign</Link>
+          </div>
 
-      <div className="flex h-screen overflow-hidden">
-        {/* Sidebar */}
 
-        <div className="relative flex flex-col flex-1 bg-neutral-100 overflow-y-auto overflow-x-hidden">
-          {/*  Site header */}
+            <CampaignsCell
+            userId={userMetadata.sub}/>
 
-          <main>
-            <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
-              {/* Welcome banner */}
-              <WelcomeBanner/>
-              {/* Cards */}
-              <div className="grid grid-cols-12 gap-6">
-              </div>
-            </div>
-          </main>
         </div>
+
       </div>
     </>
   )

@@ -81,7 +81,7 @@ function Sidebar({sidebarOpen, setSidebarOpen}) {
           <div>
 
             <ul className="mt-3  space-y-12">
-              <div className={"px-2"}>
+              <div className={"px-2 -ml-2"}>
                 <Link className={"btn btn-sm btn-outline "} to={routes.dashboard()}> Dashboard</Link>
               </div>
               <div className="mt-3  space-y-6">

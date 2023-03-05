@@ -1,0 +1,44 @@
+export const schema = gql`
+  type CampaignIntegration {
+    id: Int!
+    campaign: Campaign!
+    campaignId: Int!
+    productHuntPostUrl: String
+    productHuntReviewsUrl: String
+    twitterCompanyName: String
+    companyTwitterHandle: String
+    updatedAt: DateTime!
+  }
+
+  type Query {
+    campaignIntegrations: [CampaignIntegration!]! @requireAuth
+    campaignIntegration(id: Int!): CampaignIntegration @requireAuth
+  }
+
+  input CreateCampaignIntegrationInput {
+    campaignId: Int!
+    productHuntPostUrl: String
+    productHuntReviewsUrl: String
+    twitterCompanyName: String
+    companyTwitterHandle: String
+  }
+
+  input UpdateCampaignIntegrationInput {
+    campaignId: Int
+    productHuntPostUrl: String
+    productHuntReviewsUrl: String
+    twitterCompanyName: String
+    companyTwitterHandle: String
+  }
+
+  type Mutation {
+    createCampaignIntegration(
+      input: CreateCampaignIntegrationInput!
+    ): CampaignIntegration! @requireAuth
+    updateCampaignIntegration(
+      id: Int!
+      input: UpdateCampaignIntegrationInput!
+    ): CampaignIntegration! @requireAuth
+    deleteCampaignIntegration(id: Int!): CampaignIntegration! @requireAuth
+  }
+`
