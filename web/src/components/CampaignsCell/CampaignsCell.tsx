@@ -28,7 +28,7 @@ export const Success = ({ campaigns }: CellSuccessProps<CampaignsQuery>) => {
     <ul>
       <div className="grid grid-cols-2 gap-6">
       {campaigns.map((item) => {
-        return <CampaignCard description={""} newReviewsCount={1} reviewsCount={1} title={""}/>
+        return <CampaignCard description={item.description} newReviewsCount={1} reviewsCount={1} title={item.title}/>
       })}
       </div>
     </ul>
