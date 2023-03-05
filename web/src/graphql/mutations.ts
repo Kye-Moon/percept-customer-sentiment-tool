@@ -1,3 +1,5 @@
+import {string} from "prop-types";
+
 export const FAVOURITE = gql`
   mutation FavouriteReviewMutation($id: Int!) {
     favouriteReview(id: $id){
@@ -21,3 +23,11 @@ export const ARCHIVE = gql`
     }
   }
 `
+export const CREATE_CAMPAIGN = gql`
+  mutation CreateCampaign($input: CreateCampaignInput!) {
+    createCampaign(input: $input){
+      id
+    }
+  }
+`
+

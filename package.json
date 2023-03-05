@@ -32,6 +32,7 @@
     "hero": "^0.0.0",
     "icons": "^1.0.0",
     "react-flatpickr": "^3.10.13",
+    "react-hook-form": "^7.43.4",
     "react-transition-group": "^4.4.5",
     "tailwind": "^4.0.0"
   }
