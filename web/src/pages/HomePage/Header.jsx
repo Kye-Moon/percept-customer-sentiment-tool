@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {Link} from "@redwoodjs/router";
-import Transition from '../utils/Transition';
+import Transition from './utils/Transition';
 import {useAuth} from "@redwoodjs/auth";
 
 function Header() {
