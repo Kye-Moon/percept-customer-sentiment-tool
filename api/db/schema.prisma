@@ -8,16 +8,38 @@ generator client {
   binaryTargets = "native"
 }
 
-model recommended_mention {
-  id    Int     @id @default(autoincrement())
-  createAt String
-  externalReference String @unique
-  body  String
-  mentionSource String
-  username String
-  userDescription String?
-  profileImageUrl String
-  archived Boolean? @default(false)
-  favourite Boolean? @default(false)
-  onWall Boolean? @default(false)
+model RecommendedMention {
+  id                Int      @id @default(autoincrement())
+  createAt          String
+  externalReference String   @unique
+  body              String
+  mentionSource     String
+  username          String
+  userDescription   String?
+  profileImageUrl   String
+  archived          Boolean? @default(false)
+  favourite         Boolean? @default(false)
+  onWall            Boolean? @default(false)
+}
+
+model Campaign {
+  id           Int                    @id @default(autoincrement())
+  createAt     DateTime               @default(now())
+  updatedAt    DateTime               @updatedAt
+  userId       String
+  status       String                 @default("ACTIVE")
+  title        String
+  description  String
+  integrations CampaignIntegration[]
+}
+
+model CampaignIntegration {
+  id                    Int      @id @default(autoincrement())
+  campaign              Campaign @relation(fields: [campaignId], references: [id])
+  campaignId            Int
+  productHuntPostUrl    String?
+  productHuntReviewsUrl String?
+  twitterCompanyName    String?
+  companyTwitterHandle String?
+  updatedAt             DateTime @updatedAt
 }

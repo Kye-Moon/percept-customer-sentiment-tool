@@ -12,13 +12,15 @@ module.exports = {
 
           "primary": "#2a7dea",
 
-          "secondary": "#4090f9",
+          "secondary": "#a63cff",
 
           "accent": "#ef83cf",
 
-          "neutral": "#151A1E",
+          "neutral": "#1c2326",
 
-          "base-100": "#141518",
+          "base-100": "#070d1f",
+
+          "base-content": "#e7e7e7",
 
           "info": "#5C89D1",
 

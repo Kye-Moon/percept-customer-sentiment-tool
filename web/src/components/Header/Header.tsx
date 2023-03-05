@@ -6,44 +6,18 @@ import Sidebar from "src/components/Sidebar/Sidebar";
 
 const Header = ({sidebarOpen, setSidebarOpen}) => {
   return (
-    <div className="flex h-screen overflow-hidden">
-
-      <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-        <header className="bg-base-100  z-30">
-          <div className="px-4 sm:px-6 lg:px-8">
+    <div className="flex  ">
+      <div className="relative flex flex-col flex-1  ">
+        <header className="bg-base-100  z-30 bg-neutral">
+          <div className="p-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16 -mb-px">
-
-              {/* Header: Left side */}
-              <div className="flex">
-
-                {/* Hamburger button */}
-                <button
-                  className="text-slate-500 hover:text-slate-600 lg:hidden"
-                  aria-controls="sidebar"
-                  aria-expanded={sidebarOpen}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSidebarOpen(!sidebarOpen);
-                  }}
-                >
-                  <span className="sr-only">Open sidebar</span>
-                  <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="4" y="5" width="16" height="2"/>
-                    <rect x="4" y="11" width="16" height="2"/>
-                    <rect x="4" y="17" width="16" height="2"/>
-                  </svg>
-                </button>
-
-              </div>
-
-              {/* Header: Right side */}
-              <div className="flex items-center space-x-3">
-                {/*  Divider */}
-                <hr className="w-px h-6 bg-slate-200 mx-3"/>
-                <DropdownProfile align="right"/>
-
-              </div>
-
+                <div className="dropdown dropdown-bottom dropdown-end">
+                  <label tabIndex={0} className="btn btn-outline btn-circle m-1">MS</label>
+                  <ul tabIndex={0} className="dropdown-content text-base-100 menu p-2 shadow bg-white rounded-box w-52">
+                    <li><a>Item 1</a></li>
+                    <li><a>Item 2</a></li>
+                  </ul>
+                </div>
             </div>
           </div>
         </header>
