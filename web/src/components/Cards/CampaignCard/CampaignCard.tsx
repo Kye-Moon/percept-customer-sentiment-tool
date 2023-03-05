@@ -8,15 +8,15 @@ interface CampaignCardProps {
   reviewsCount:number
 }
 
-const CampaignCard = ({}:CampaignCardProps) => {
+const CampaignCard = ({description,title}:CampaignCardProps) => {
   return (
     <Link className={""} to={""}>
     <div className="card  bg-neutral shadow-xl hover:bg-primary">
       <div className="card-body">
         <div className={'flex justify-between'}>
           <div className={"pb-3"}>
-            <h2 className="card-title pb-3">Title</h2>
-            <p>Description</p>
+            <h2 className="card-title pb-3">{title}</h2>
+            <p>{description}</p>
           </div>
           <AdjustmentsHorizontalIcon className={'h-6 w-6'}/>
         </div>
