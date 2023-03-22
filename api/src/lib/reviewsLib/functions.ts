@@ -1,12 +1,12 @@
 
-import {recommendedMention, updateRecommendedMention} from "src/services/recommendedMentions/recommendedMentions";
-import {
-  recommeded_mention_findManyWhere,
-  recommeded_mention_findUnique,
-  recommended_mention_update
-} from "src/lib/recommendedMentionsLib/db";
 
-export const getfilteredRecommendedMentions = (filterType) => {
+import {
+  review_findManyWhere,
+  review_findUnique,
+  review_update
+} from "src/lib/reviewsLib/db";
+
+export const getfilteredReviews = (filterType) => {
   let filter
   switch (filterType) {
     case "ALL":{
@@ -36,30 +36,30 @@ export const getfilteredRecommendedMentions = (filterType) => {
       break;
     }
   }
-  return recommeded_mention_findManyWhere(filter)
+  return review_findManyWhere(filter)
 }
 
 export const markReviewAsFavourite = async (id: number) => {
-  let mention = await recommeded_mention_findUnique(id)
+  let mention = await review_findUnique(id)
   mention.favourite = true
   mention.archived = false
   mention.onWall = false
-  return recommended_mention_update(id,mention);
+  return review_update(id,mention);
 }
 
 export const markReviewAsArchived = async (id: number) => {
-  let mention = await recommeded_mention_findUnique(id)
+  let mention = await review_findUnique(id)
   mention.archived = true
   mention.favourite = false
   mention.onWall = false
-  return recommended_mention_update(id,mention);
+  return review_update(id,mention);
 }
 
 export const markReviewAsOnWall = async (id: number) => {
-  let mention = await recommeded_mention_findUnique(id)
+  let mention = await review_findUnique(id)
   mention.onWall = true
   mention.favourite = false
   mention.archived = false
-  return recommended_mention_update(id,mention);
+  return review_update(id,mention);
 }
 

@@ -5,7 +5,7 @@ import DisplayReviewCard from "src/components/Cards/DisplayReviewCard";
 
 export const QUERY = gql`
   query FindReviewsWallQuery {
-    filteredRecommendedMentions(filter: ONWALL) {
+    filteredReviews(filter: ONWALL) {
       body
       createAt
       externalReference

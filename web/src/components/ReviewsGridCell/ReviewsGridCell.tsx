@@ -13,7 +13,7 @@ export const beforeQuery = (props) => {
 }
 export const QUERY = gql`
   query FindReviewsGridQuery($filter: QueryFilter) {
-    filteredRecommendedMentions(filter: $filter) {
+    filteredReviews(filter: $filter) {
       body
       createAt
       externalReference

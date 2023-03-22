@@ -4,10 +4,10 @@ import directives from 'src/directives/**/*.{js,ts}'
 import sdls from 'src/graphql/**/*.sdl.{js,ts}'
 import services from 'src/services/**/*.{js,ts}'
 
-import { getCurrentUser } from 'src/lib/auth'
+import { getCurrentUser } from 'src/lib/utils/auth'
 
-import { db } from 'src/lib/db'
-import { logger } from 'src/lib/logger'
+import { db } from 'src/lib/utils/db'
+import { logger } from 'src/lib/utils/logger'
 
 export const handler = createGraphQLHandler({
   getCurrentUser,
