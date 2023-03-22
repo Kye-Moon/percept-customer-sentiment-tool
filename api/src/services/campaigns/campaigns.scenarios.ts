@@ -5,16 +5,16 @@ export const standard = defineScenario<Prisma.CampaignCreateArgs>({
   campaign: {
     one: {
       data: {
-        updatedAt: '2023-03-04T09:09:10.976Z',
-        userId: 'String2277607',
+        updatedAt: '2023-03-05T09:33:51.278Z',
+        userId: 'String',
         title: 'String',
         description: 'String',
       },
     },
     two: {
       data: {
-        updatedAt: '2023-03-04T09:09:10.976Z',
-        userId: 'String2557713',
+        updatedAt: '2023-03-05T09:33:51.278Z',
+        userId: 'String',
         title: 'String',
         description: 'String',
       },

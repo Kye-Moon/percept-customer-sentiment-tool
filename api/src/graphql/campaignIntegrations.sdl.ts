@@ -13,6 +13,7 @@ export const schema = gql`
   type Query {
     campaignIntegrations: [CampaignIntegration!]! @requireAuth
     campaignIntegration(id: Int!): CampaignIntegration @requireAuth
+   ## triggerIntegrationRequest(campaignId:Int!): TriggerResponse @skipAuth # add user id to fetch params
   }
 
   input CreateCampaignIntegrationInput {

@@ -3,7 +3,19 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
+    "@aws-sdk/client-sns": "^3.294.0",
+    "@prisma/client": "^4.7.1",
     "@redwoodjs/api": "3.8.0",
-    "@redwoodjs/graphql-server": "3.8.0"
+    "@redwoodjs/graphql-server": "3.8.0",
+    "aws-sdk": "^2.1338.0"
+  },
+  "devDependencies": {
+    "@agiledigital/serverless-sns-sqs-lambda": "^2.0.1",
+    "@netlify/zip-it-and-ship-it": "^8.9.0",
+    "serverless": "^3.28.1",
+    "serverless-iam-roles-per-function": "^3.2.0"
+  },
+  "scripts": {
+    "prepublish": "yarn rw build api && yarn zip-it-and-ship-it dist/functions/ dist/zipballs/\n "
   }
 }

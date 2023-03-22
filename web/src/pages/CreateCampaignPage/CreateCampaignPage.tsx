@@ -46,8 +46,6 @@ const CreateCampaignPage = () => {
     }).then((r)=> {
       console.log(r)
       navigate(routes.dashboard())
-
-
     })
   };
 

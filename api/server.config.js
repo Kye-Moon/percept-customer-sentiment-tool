@@ -1,3 +1,9 @@
+
+
+const { uuid } = require('uuidv4');
+// create request ids
+const createRequestId = () => uuid();
+
 /**
  * This file allows you to configure the Fastify Server settings
  * used by the RedwoodJS dev server.
@@ -19,6 +25,7 @@ const config = {
     // Note: If running locally using `yarn rw serve` you may want to adust
     // the default non-development level to `info`
     level: process.env.NODE_ENV === 'development' ? 'debug' : 'warn',
+    genReqId: createRequestId
   },
 }
 
@@ -32,12 +39,37 @@ const config = {
  *
  * Note: This configuration does not apply in a serverless deploy.
  */
-
+const AutoLoad = require('fastify-autoload');
+const path = require('path');
 /** @type {import('@redwoodjs/api-server/dist/fastify').FastifySideConfigFn} */
 const configureFastify = async (fastify, options) => {
   if (options.side === 'api') {
     fastify.log.info({ custom: { options } }, 'Configuring api side')
+
+    // Register rabbitmq plugin
+    fastify.register(require('fastify-rabbit'), {
+      protocol: 'amqp',
+      hostname: 'localhost',
+      port: 5672,
+      username: 'guest',
+      password: 'guest',
+      locale: 'en_US',
+      frameMax: 0,
+      heartbeat: 0,
+      vhost: ''
+    })
+
+    // Register all producers under routes directory
+    fastify.register(AutoLoad,{
+      dir: path.join(__dirname,'src','messaging','routes')
+    })
+    // // Register all consumers under routes directory
+    // fastify.register(AutoLoad,{
+    //   dir: path.join(__dirname,'src','messaging','consumers')
+    // })
   }
+
+
 
   if (options.side === 'web') {
     fastify.log.info({ custom: { options } }, 'Configuring web side')
