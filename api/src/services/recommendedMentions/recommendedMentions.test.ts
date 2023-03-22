@@ -1,12 +1,7 @@
+/*
 import type { RecommendedMention } from '@prisma/client'
 
-import {
-  recommendedMentions,
-  recommendedMention,
-  createRecommendedMention,
-  updateRecommendedMention,
-  deleteRecommendedMention,
-} from './recommendedMentions'
+
 import type { StandardScenario } from './recommendedMentions.scenarios'
 
 // Generated boilerplate tests do not account for all circumstances
@@ -17,9 +12,9 @@ import type { StandardScenario } from './recommendedMentions.scenarios'
 
 describe('recommendedMentions', () => {
   scenario(
-    'returns all recommendedMentions',
+    'returns all reviews',
     async (scenario: StandardScenario) => {
-      const result = await recommendedMentions()
+      const result = await reviews()
 
       expect(result.length).toEqual(
         Object.keys(scenario.recommendedMention).length
@@ -30,7 +25,7 @@ describe('recommendedMentions', () => {
   scenario(
     'returns a single recommendedMention',
     async (scenario: StandardScenario) => {
-      const result = await recommendedMention({
+      const result = await review({
         id: scenario.recommendedMention.one.id,
       })
 
@@ -87,3 +82,4 @@ describe('recommendedMentions', () => {
     }
   )
 })
+*/

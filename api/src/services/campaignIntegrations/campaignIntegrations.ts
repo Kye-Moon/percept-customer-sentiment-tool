@@ -4,7 +4,7 @@ import type {
   CampaignIntegrationRelationResolvers,
 } from 'types/graphql'
 
-import { db } from 'src/lib/db'
+import { db } from 'src/lib/utils/db'
 
 export const campaignIntegrations: QueryResolvers['campaignIntegrations'] =
   () => {

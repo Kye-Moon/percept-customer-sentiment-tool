@@ -8,11 +8,12 @@ export const schema = gql`
     title: String!
     description: String!
     integrations: [CampaignIntegration]!
+    campaignReviews: [CampaignReview]!
   }
 
   type Query {
-    campaigns(userId:String!): [Campaign!]! @requireAuth
-    campaign(id: Int!): Campaign @requireAuth
+    campaigns(userId:String!): [Campaign!]! @skipAuth
+    campaign(id: Int!): Campaign @skipAuth
   }
 
   input CreateCampaignInput {

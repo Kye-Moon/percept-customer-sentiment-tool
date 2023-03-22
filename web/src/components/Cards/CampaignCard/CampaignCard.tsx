@@ -8,7 +8,7 @@ interface CampaignCardProps {
   reviewsCount:number
 }
 
-const CampaignCard = ({description,title}:CampaignCardProps) => {
+const CampaignCard = ({description,title,reviewsCount}:CampaignCardProps) => {
   return (
     <Link className={""} to={""}>
     <div className="card  bg-neutral shadow-xl hover:bg-primary">
@@ -22,7 +22,7 @@ const CampaignCard = ({description,title}:CampaignCardProps) => {
         </div>
           <span className="badge badge-accent">New</span>
         <div className={"py-4 grid grid-cols-2 w-1/2 "}>
-          <h2>Reviews: #</h2>
+          <h2>Reviews: {reviewsCount}</h2>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import type {
   CampaignRelationResolvers,
 } from 'types/graphql'
 
-import { db } from 'src/lib/db'
+import { db } from 'src/lib/utils/db'
 
 export const campaigns: QueryResolvers['campaigns'] = ({userId}) => {
   return db.campaign.findMany({where:{userId: userId}})
@@ -19,6 +19,7 @@ export const campaign: QueryResolvers['campaign'] = ({ id }) => {
 export const createCampaign: MutationResolvers['createCampaign'] = ({
   input,
 }) => {
+  this
   return db.campaign.create({
     data: {
       userId: input.userId,
@@ -55,6 +56,9 @@ export const deleteCampaign: MutationResolvers['deleteCampaign'] = ({ id }) => {
 export const Campaign: CampaignRelationResolvers = {
   integrations: (_obj, { root }) => {
     return db.campaign.findUnique({ where: { id: root?.id } }).integrations()
+  },
+  campaignReviews: (_obj, { root }) => {
+    return db.campaign.findUnique({ where: { id: root?.id } }).campaignReviews()
   },
 }
 
