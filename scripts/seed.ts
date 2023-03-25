@@ -1,7 +1,7 @@
 import type { Prisma } from '@prisma/client'
 import { db } from 'api/src/lib/utils/db'
 
-export default async () => {
+/*export default async () => {
   try {
     //
     // Manually seed via `yarn rw prisma db seed`
@@ -60,4 +60,4 @@ export default async () => {
     console.warn('Please define your seed data.')
     console.error(error)
   }
-}
+}*/

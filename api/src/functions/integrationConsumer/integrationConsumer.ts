@@ -1,5 +1,6 @@
-import type { SQSEvent, Context } from 'aws-lambda'
+import type { SQSEvent, Context,DynamoDBStreamEvent } from 'aws-lambda'
 import { logger } from 'src/lib/utils/logger'
+import {DynamoDBStreams} from "aws-sdk";
 
 /**
  * The handler function is your code that processes http request events.
@@ -17,7 +18,10 @@ import { logger } from 'src/lib/utils/logger'
  * @param { Context } context - contains information about the invocation,
  * function, and execution environment.
  */
-export const handler = async (event: SQSEvent, context: Context) => {
+export const handler = async (event: DynamoDBStreamEvent, context: Context) => {
   console.log("consumer invoked")
-
+  for (const record of event.Records) {
+    console.log(record.dynamodb.NewImage.PK)
+    console.log(record.dynamodb.NewImage.item)
+  }
 }

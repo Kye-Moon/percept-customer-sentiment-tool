@@ -10,10 +10,7 @@ const PRODUCTHUNT_REVIEW = "PRODUCTHUNT_REVIEW"
 const TWITTER = "TWITTER"
 
 
-
-export class IntegrationRequestPublisherService {
-
-  public processIntegrationRequestEvent(event: APIGatewayEvent) {
+  export function processIntegrationRequestEvent(event: APIGatewayEvent) {
     const integrationRequest = this.extractParamsFromGatewayEvent(event)
     // Check campaign exists
     if (integrationRequest.campaignId === undefined) throw new Error("Campaign Id is undefined")
@@ -38,7 +35,7 @@ export class IntegrationRequestPublisherService {
     }
   }
 
-  private buildPublishParams = (campaingId: string, body: string, taskType: string): SNSPublishParams => {
+export function buildPublishParams (campaingId: string, body: string, taskType: string): SNSPublishParams {
     return {
       Message: JSON.stringify({campaignId: campaingId, body:body}), /* required */
       TopicArn: topicARN,
@@ -51,7 +48,7 @@ export class IntegrationRequestPublisherService {
     }
   }
 
-  private extractParamsFromGatewayEvent = (event: APIGatewayEvent): IntegrationRequestCommand => {
+export function extractParamsFromGatewayEvent(event: APIGatewayEvent): IntegrationRequestCommand  {
     return {
       campaignId: (event.queryStringParameters.campaignId !== null) ? event.queryStringParameters.campaignId : undefined,
       productHuntPostUrl: (event.queryStringParameters.productHuntPostUrl !== null) ? event.queryStringParameters.productHuntPostUrl : undefined ,
@@ -61,12 +58,12 @@ export class IntegrationRequestPublisherService {
     }
   }
 
-  async publishToSNS(params) {
+export async function publishToSNS(params) {
     try {
       return await snsClient.send(new PublishCommand(params)); // For unit tests.
     } catch (err) {
-      console.log("Error", err.stack);
+      return err;
     }
-  };
-}
+  }
+
 
