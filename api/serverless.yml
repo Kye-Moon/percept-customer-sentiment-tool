@@ -14,6 +14,8 @@ plugins:
   - "@agiledigital/serverless-sns-sqs-lambda"
 provider:
   name: aws
+  stage: dev
+  deploymentMethod: direct
   runtime: nodejs14.x
   region: ap-southeast-2 # AWS region where the service will be deployed, defaults to N. Virginia
   httpApi:          # HTTP API is used by default. To learn about the available options in API Gateway, see https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vs-rest.html
@@ -73,7 +75,7 @@ functions:
     handler: integrationRequestPublisher.handler
     description: the Publish Handler
     memorySize: 1024 # in megabytes
-    timeout: 30
+    timeout: 60
     tags: # tags for this specific lambda function
       endpoint: /integrations
     events:
@@ -96,17 +98,23 @@ functions:
     description: the integrationConsumer Handler
     memorySize: 128
     timeout: 10
+    iamRoleStatementsName: integration-consumer-role
+    iamRoleStatements:
+      - Effect: 'Allow'
+        Action:
+          - "dynamodb:DescribeStream"
+          - "dynamodb:GetRecords"
+          - "dynamodb:GetShardIterator"
+          - "dynamodb:ListStreams"
+        Resource:
+          - !GetAtt MentionsTable.Arn
     events:
-      - snsSqs:
-          name: Event # Required - choose a name prefix for the event queue
-          topicArn: !Ref IntegrationsTopic # Required - SNS topic to subscribe to
-          visibilityTimeout: 120 # optional (in seconds) - AWS default is 30 secs
-          rawMessageDelivery: true # Optional - default value is true
-          enabled: true # Optional - default value is true
-          filterPolicy: # Optional - filter messages that are handled
-            integrationRequestState:
-              - COMPLETED
-
+      - stream:
+            type: dynamodb
+            arn:
+                Fn::GetAtt: [MentionsTable, StreamArn]
+            batchSize: 10
+            batchWindow: 10
 resources:
   Resources:
     ## Integration Type Topics
@@ -114,9 +122,37 @@ resources:
       Type: AWS::SNS::Topic
       Properties:
         TopicName: IntegrationRequests
+    MentionsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: PK
+            AttributeType: S
+          - AttributeName: SK
+            AttributeType: S
+        KeySchema:
+          - AttributeName: PK
+            KeyType: HASH
+          - AttributeName: SK
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST
+        TableName: mentions
+        Tags:
+          - Key: Application
+            Value: ${self:service}
+          - Key: Stage
+            Value: ${self:provider.stage}
+          - Key: StackName
+            Value: !Ref AWS::StackId
+        StreamSpecification:
+          StreamViewType: NEW_IMAGE
   ## Outputs to import into the handlers service
   Outputs:
     IntegrationsTopicArn:
       Value: !Ref IntegrationsTopic
       Export:
         Name: IntegrationsTopicArn
+    MentionsTableArn:
+        Value: !GetAtt MentionsTable.Arn
+        Export:
+            Name: MentionsTableArn

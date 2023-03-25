@@ -1,8 +1,13 @@
 import type {APIGatewayEvent, Context} from 'aws-lambda'
 import {logger} from 'src/lib/utils/logger'
 // Load the AWS SDK for Node.js
-import {IntegrationRequestPublisherService} from "src/lib/RequestPublisherLib/IntegrationRequestPublisherService";
+
 import {PublishCommand, PublishCommandInput, SNSClient} from "@aws-sdk/client-sns";
+import {
+  buildPublishParams,
+  extractParamsFromGatewayEvent,
+  publishToSNS
+} from "src/lib/RequestPublisherLib/IntegrationRequestPublisherService";
 
 const REGION = "ap-southeast-2";
 const snsClient = new SNSClient({region: REGION});
@@ -10,7 +15,6 @@ let topicARN = process.env.TOPIC_ARN
 const PRODUCTHUNT_POST = "PRODUCTHUNT_POST"
 const PRODUCTHUNT_REVIEW = "PRODUCTHUNT_REVIEW"
 const TWITTER = "TWITTER"
-let integrationRequestPublisherService = new IntegrationRequestPublisherService()
 /**
  * The handler function is your code that processes http request events.
  * You can use return and throw to send a response or error, respectively.
@@ -31,7 +35,31 @@ let integrationRequestPublisherService = new IntegrationRequestPublisherService(
 export const handler = async (event: APIGatewayEvent, context: Context) => {
   console.log('Invoked integrationRequestPublisher function with event:'+ JSON.stringify(event))
 
-  integrationRequestPublisherService.processIntegrationRequestEvent(event)
+  const integrationRequest = extractParamsFromGatewayEvent(event)
+  console.log("Integration Request: " + JSON.stringify(integrationRequest))
+
+  if (integrationRequest.campaignId === undefined) throw new Error("Campaign Id is undefined")
+
+  if (integrationRequest.productHuntPostUrl !== undefined) {
+    console.log("Product Hunt Post URL: " + integrationRequest.productHuntPostUrl)
+    const phPostParams = buildPublishParams(integrationRequest.campaignId,integrationRequest.productHuntPostUrl, PRODUCTHUNT_POST)
+    console.log("Publish Params: " + JSON.stringify(phPostParams))
+    await publishToSNS(phPostParams).then(data => console.log("Success.", data))
+  }
+
+  if (integrationRequest.productHuntReviewsUrl !== undefined) {
+    const phReviewParams = buildPublishParams(integrationRequest.campaignId,integrationRequest.productHuntReviewsUrl, PRODUCTHUNT_REVIEW)
+    publishToSNS(phReviewParams).then(data => console.log("Success.", data))
+  }
+
+  if (integrationRequest.twitterCompanyName !== undefined && integrationRequest.companyTwitterHandle !== undefined) {
+    const twitterIdentifiers = {
+      twitterCompanyName: integrationRequest.twitterCompanyName,
+      twitterHandle: integrationRequest.companyTwitterHandle
+    }
+    const twitterParams = buildPublishParams(integrationRequest.campaignId,JSON.stringify(twitterIdentifiers), TWITTER)
+    publishToSNS(twitterParams).then(data => console.log("Success.", data))
+  }
 
   return {
     statusCode: 201,
