@@ -1,6 +1,16 @@
-import type { SQSEvent, Context,DynamoDBStreamEvent } from 'aws-lambda'
-import { logger } from 'src/lib/utils/logger'
-import {DynamoDBStreams} from "aws-sdk";
+import type {SQSEvent, Context, DynamoDBStreamEvent} from 'aws-lambda'
+import {db} from "src/lib/utils/db";
+
+
+interface ReviewDto {
+  createAt: string
+  externalReference: string
+  body: string
+  mentionSource: string
+  username: string
+  userDescription: string
+  profileImageUrl: string
+}
 
 /**
  * The handler function is your code that processes http request events.
@@ -20,8 +30,44 @@ import {DynamoDBStreams} from "aws-sdk";
  */
 export const handler = async (event: DynamoDBStreamEvent, context: Context) => {
   console.log("consumer invoked")
+  await db.$connect()
   for (const record of event.Records) {
-    console.log(record.dynamodb.NewImage.PK)
-    console.log(record.dynamodb.NewImage.item)
+    const externalReference = record.dynamodb.NewImage.SK.S
+    const mention = record.dynamodb.NewImage.item.M
+    //const campaignId = mention.campaignId.S // need to add campaignId to the mention
+    const review: ReviewDto = {
+      body: mention.body.S,
+      createAt: mention.createAt.S,
+      externalReference: externalReference,
+      mentionSource: mention.source.S,
+      userDescription: "TODO",
+      profileImageUrl: mention.profileImageUrl.S,
+      username: mention.username.S
+    }
+    try {
+      const saved = await db.review.create({
+        data: {
+          body: review.body,
+          createAt: review.createAt,
+          externalReference: review.externalReference,
+          mentionSource: review.mentionSource,
+          userDescription: review.userDescription,
+          profileImageUrl: review.profileImageUrl,
+          username: review.username,
+          campaigns:{
+            create: {
+              campaign:{
+                connect:{id:1}
+              }
+            }
+          }
+        }
+      })
+      console.log("saved", saved)
+    }catch (e) {
+      console.log(e)
+    }
   }
+  db.$disconnect()
 }
+
