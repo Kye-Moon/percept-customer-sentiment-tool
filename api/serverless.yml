@@ -41,7 +41,7 @@ provider:
   lambdaHashingVersion: 20201221 # https://www.serverless.com/framework/docs/deprecations/#LAMBDA_HASHING_VERSION_V2
   environment:
     # Add environment variables here, either in the form
-    # VARIABLE_NAME: ${env:VARIABLE_NAME} for vars in your local environment, or
+    #DATABASE_URL_PROD: ${env:DEV_DATABASE_URL}
     # VARIABLE_NAME: ${param:VARIABLE_NAME} for vars from the Serverless dashboard
 
 package:
@@ -115,6 +115,9 @@ functions:
                 Fn::GetAtt: [MentionsTable, StreamArn]
             batchSize: 10
             batchWindow: 10
+            maximumRetryAttempts: 2
+            filterPatterns:
+              - eventName: [INSERT,MODIFY]
 resources:
   Resources:
     ## Integration Type Topics

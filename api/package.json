@@ -7,7 +7,8 @@
     "@prisma/client": "^4.7.1",
     "@redwoodjs/api": "3.8.0",
     "@redwoodjs/graphql-server": "3.8.0",
-    "aws-sdk": "^2.1338.0"
+    "aws-sdk": "^2.1338.0",
+    "jest-mock-extended": "^3.0.4"
   },
   "devDependencies": {
     "@agiledigital/serverless-sns-sqs-lambda": "^2.0.1",

@@ -2,7 +2,7 @@
 import type { RecommendedMention } from '@prisma/client'
 
 
-import type { StandardScenario } from './recommendedMentions.scenarios'
+import type { StandardScenario } from './reviews.scenarios'
 
 // Generated boilerplate tests do not account for all circumstances
 // and can fail without adjustments, e.g. Float.
@@ -10,7 +10,7 @@ import type { StandardScenario } from './recommendedMentions.scenarios'
 //       https://redwoodjs.com/docs/testing#testing-services
 // https://redwoodjs.com/docs/testing#jest-expect-type-considerations
 
-describe('recommendedMentions', () => {
+describe('reviews', () => {
   scenario(
     'returns all reviews',
     async (scenario: StandardScenario) => {
