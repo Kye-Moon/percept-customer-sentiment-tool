@@ -22,13 +22,12 @@ interface CreateCampaignInputs extends FormInputs {
   userId: string
 }
 
-``
-
 const CreateCampaignPage = () => {
   const {userMetadata} = useAuth()
   const {register, handleSubmit, watch, formState: {errors}} = useForm<FormInputs>();
   const [createCampaign] = useMutation(CREATE_CAMPAIGN)
   const onSubmit: SubmitHandler<FormInputs> = (data: FormInputs) => {
+    console.log(data)
     createCampaign({
       variables: {
         input: {

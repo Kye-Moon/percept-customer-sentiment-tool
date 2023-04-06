@@ -35,7 +35,7 @@ export const schema = gql`
   type Mutation {
     createCampaignIntegration(
       input: CreateCampaignIntegrationInput!
-    ): CampaignIntegration! @requireAuth
+    ): CampaignIntegration! @skipAuth
     updateCampaignIntegration(
       id: Int!
       input: UpdateCampaignIntegrationInput!

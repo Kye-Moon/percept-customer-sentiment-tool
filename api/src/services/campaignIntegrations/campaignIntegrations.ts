@@ -1,10 +1,8 @@
-import type {
-  QueryResolvers,
-  MutationResolvers,
-  CampaignIntegrationRelationResolvers,
-} from 'types/graphql'
+import type {CampaignIntegrationRelationResolvers, MutationResolvers, QueryResolvers,} from 'types/graphql'
 
-import { db } from 'src/lib/utils/db'
+import {db} from "src/lib/utils/db";
+
+const axios = require('axios')
 
 export const campaignIntegrations: QueryResolvers['campaignIntegrations'] =
   () => {
@@ -20,11 +18,24 @@ export const campaignIntegration: QueryResolvers['campaignIntegration'] = ({
 }
 
 export const createCampaignIntegration: MutationResolvers['createCampaignIntegration'] =
-  ({ input }) => {
-    return db.campaignIntegration.create({
+  async ({input}) => {
+    const integration = await db.campaignIntegration.create({
       data: input,
     })
+
+    if (input.productHuntReviewsUrl !== undefined) {
+      const searchParams = new URLSearchParams({
+        campaignId: input.campaignId.toString(),
+        productHuntReviewsUrl: input.productHuntReviewsUrl,
+      })
+      const response = sendIntegrationRequest(searchParams)
+    }
+    return integration
   }
+
+export const sendIntegrationRequest = async (queryStringParams: URLSearchParams) => {
+  return await axios.post(`${process.env.REDWOOD_ENV_LAMBDA_API_URL_DEV}/integrationRequestPublisher?` + queryStringParams)
+}
 
 export const updateCampaignIntegration: MutationResolvers['updateCampaignIntegration'] =
   ({ id, input }) => {

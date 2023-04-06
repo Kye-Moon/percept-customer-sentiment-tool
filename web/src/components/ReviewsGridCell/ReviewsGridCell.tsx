@@ -34,15 +34,15 @@ export const Failure = ({error}: CellFailureProps<FindReviewsGridQueryVariables>
   <div style={{color: 'red'}}>Error: {error?.message}</div>
 )
 
-export const Success = ({filteredRecommendedMentions}: CellSuccessProps<FindReviewsGridQuery, FindReviewsGridQueryVariables>) => {
-  const [reviews, setReviews] = useState(filteredRecommendedMentions)
+export const Success = ({filteredReviews}: CellSuccessProps<FindReviewsGridQuery, FindReviewsGridQueryVariables>) => {
+  const [reviews, setReviews] = useState(filteredReviews)
   const [favouriteMutate] = useMutation(FAVOURITE)
   const [archiveMutate] = useMutation(ARCHIVE)
   const [addToWallMutate] = useMutation(ADD_TO_WALL)
 
   useEffect(()=>{
-    setReviews(filteredRecommendedMentions)
-  },[filteredRecommendedMentions])
+    setReviews(filteredReviews)
+  },[filteredReviews])
 
   const saveReviewToWall = (id:number) => {
     setReviews(reviews.filter((review) => review.id !== id))

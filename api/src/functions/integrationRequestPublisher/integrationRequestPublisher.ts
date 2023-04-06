@@ -9,9 +9,6 @@ import {
   publishToSNS
 } from "src/lib/RequestPublisherLib/IntegrationRequestPublisherService";
 
-const REGION = "ap-southeast-2";
-const snsClient = new SNSClient({region: REGION});
-let topicARN = process.env.TOPIC_ARN
 const PRODUCTHUNT_POST = "PRODUCTHUNT_POST"
 const PRODUCTHUNT_REVIEW = "PRODUCTHUNT_REVIEW"
 const TWITTER = "TWITTER"
