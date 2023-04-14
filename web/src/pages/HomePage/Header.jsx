@@ -1,16 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, {useRef, useState} from 'react';
 import {Link} from "@redwoodjs/router";
-import Transition from './utils/Transition';
-import {useAuth} from "@redwoodjs/auth";
+import {useAuth} from "src/auth";
+
 
 function Header() {
   const { signUp, logIn} = useAuth()
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
-  const [top, setTop] = useState(true);
 
   const trigger = useRef(null);
-  const mobileNav = useRef(null);
-
 
   return (
     <header className={`fixed w-full z-30 md:bg-opacity-90 transition duration-300 ease-in-out ${!top && 'bg-white backdrop-blur-sm shadow-lg'}`}>

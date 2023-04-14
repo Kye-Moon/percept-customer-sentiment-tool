@@ -4,7 +4,7 @@ import Header from "src/components/Header/Header";
 import {ArrowLeftIcon, ArrowRightIcon} from "@heroicons/react/20/solid";
 import {CreateCampaignDetailsForm} from "src/components/Forms/CreateCampaignDetailsForm";
 import {CreateCampaignIntegrationsForm} from "src/components/Forms/CreateCampaignIntergrationsForm";
-import {useAuth} from "@redwoodjs/auth";
+import {useAuth} from "src/auth";
 import {useMutation} from "@redwoodjs/web";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {CREATE_CAMPAIGN} from "src/graphql/mutations";
@@ -16,11 +16,9 @@ interface FormInputs {
   productHuntReviewsUrl: string,
   twitterCompanyName: string,
   companyTwitterHandle: string,
+  productOwnerPhUsername: string,
 }
 
-interface CreateCampaignInputs extends FormInputs {
-  userId: string
-}
 
 const CreateCampaignPage = () => {
   const {userMetadata} = useAuth()

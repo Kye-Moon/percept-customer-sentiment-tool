@@ -1,7 +1,6 @@
 import React from 'react';
 import ProductHuntLogo from "src/images/product-hunt-logo.png";
 import {CampaignIntergrationsFormProps} from "src/components/Forms/CreateCampaignIntergrationsForm";
-import TwitterLogo from "src/images/twitter_logo.png";
 
 const ProductHuntIntegrationsForm = ({register}: CampaignIntergrationsFormProps) => {
   return (
@@ -28,7 +27,8 @@ const ProductHuntIntegrationsForm = ({register}: CampaignIntergrationsFormProps)
               <label className="label">
                 <span className="label-text">Post Url</span>
               </label>
-              <input {...register("productHuntPostUrl")} type="text" placeholder="https://www.producthunt.com/posts/your-product" className="input input-bordered"/>
+              <input {...register("productHuntPostUrl")} type="text"
+                     placeholder="https://www.producthunt.com/posts/your-product" className="input input-bordered"/>
             </div>
 
             {/*Company Twitter Handle*/}
@@ -36,10 +36,23 @@ const ProductHuntIntegrationsForm = ({register}: CampaignIntergrationsFormProps)
               <label className="label">
                 <span className="label-text">Reviews Url</span>
               </label>
-              <input {...register("productHuntReviewsUrl")} type="text" placeholder="https://www.producthunt.com/products/your-product/reviews"
+              <input {...register("productHuntReviewsUrl")} type="text"
+                     placeholder="https://www.producthunt.com/products/your-product/reviews"
                      className="input input-bordered"/>
               <label className="label">
                 <span className="label-text"></span>
+              </label>
+            </div>
+
+            {/*Company Twitter Handle*/}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Your producthunt username </span>
+              </label>
+              <input {...register("productOwnerPhUsername")} type="text" placeholder="Stephen_Abrams123"
+                     className="input input-bordered"/>
+              <label className="label">
+                <span className="label-text">To filter out comments or replies left by yourself.</span>
               </label>
             </div>
 

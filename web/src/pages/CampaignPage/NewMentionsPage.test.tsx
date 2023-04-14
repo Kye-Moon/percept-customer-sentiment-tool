@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import NewMentionsPage from './NewMentionsPage'
+import CampaignPage from './CampaignPage'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //   https://redwoodjs.com/docs/testing#testing-pages-layouts
 
-describe('NewMentionsPage', () => {
+describe('CampaignPage', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<NewMentionsPage />)
+      render(<CampaignPage id={undefined} />)
     }).not.toThrow()
   })
 })

@@ -17,10 +17,15 @@ model Review {
   username          String
   userDescription   String?
   profileImageUrl   String
-  archived          Boolean?          @default(false)
-  favourite         Boolean?          @default(false)
-  onWall            Boolean?          @default(false)
+  status            ReviewStatus            @default(NEW)
   campaigns         CampaignReview[]
+}
+enum ReviewStatus {
+  NEW
+  RECCOMENDED
+  ARCHIVED
+  FAVORITE
+  ACTIVE
 }
 
 model Campaign {

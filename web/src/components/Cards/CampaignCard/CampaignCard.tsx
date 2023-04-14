@@ -1,31 +1,32 @@
 import {AdjustmentsHorizontalIcon} from "@heroicons/react/24/outline";
-import {Link, NavLink} from "@redwoodjs/router";
+import {Link, routes} from "@redwoodjs/router";
+import {Campaign} from "types/graphql";
 
 interface CampaignCardProps {
-  title: string
-  description:string
+  campaign: Campaign
+  reviewsCount: number
   newReviewsCount: number
-  reviewsCount:number
 }
 
-const CampaignCard = ({description,title,reviewsCount}:CampaignCardProps) => {
+const CampaignCard = ({campaign, reviewsCount, newReviewsCount}: CampaignCardProps) => {
+
   return (
-    <Link className={""} to={""}>
-    <div className="card  bg-neutral shadow-xl hover:bg-primary">
-      <div className="card-body">
-        <div className={'flex justify-between'}>
-          <div className={"pb-3"}>
-            <h2 className="card-title pb-3">{title}</h2>
-            <p>{description}</p>
+    <Link className={""} to={routes.campaign({id: campaign.id, tab: "new"})}>
+      <div className="card bg-neutral shadow-xl hover:bg-primary-content/20">
+        <div className="card-body">
+          <div className={'flex justify-between'}>
+            <div className={"pb-3"}>
+              <h2 className="card-title pb-3">{campaign.title}</h2>
+              <p>{campaign.description}</p>
+            </div>
+            <AdjustmentsHorizontalIcon className={'h-6 w-6'}/>
           </div>
-          <AdjustmentsHorizontalIcon className={'h-6 w-6'}/>
-        </div>
-          <span className="badge badge-accent">New</span>
-        <div className={"py-4 grid grid-cols-2 w-1/2 "}>
-          <h2>Reviews: {reviewsCount}</h2>
+          <div className={"py-4 space-x-4 w-1/2 "}>
+            <span className="badge badge-primary">Total: {reviewsCount} </span>
+            <span className="badge badge-secondary">New:{newReviewsCount} </span>
+          </div>
         </div>
       </div>
-    </div>
     </Link>
   )
 }

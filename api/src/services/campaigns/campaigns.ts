@@ -8,14 +8,20 @@ import {db} from 'src/lib/utils/db'
 import {createCampaignIntegration} from "src/services/campaignIntegrations/campaignIntegrations";
 const axios = require('axios')
 
-export const campaigns: QueryResolvers['campaigns'] = ({userId}) => {
-  return db.campaign.findMany({where: {userId: userId}})
+export const campaigns: QueryResolvers['campaigns'] = () => {
+  const currentUser = context.currentUser
+  return db.campaign.findMany({where: {userId: currentUser?.sub}})
 }
 
-export const campaign: QueryResolvers['campaign'] = ({id}) => {
-  return db.campaign.findUnique({
-    where: {id},
+export const campaign: QueryResolvers['campaign'] = async ({id}) => {
+  const currentUser = context.currentUser
+  const campaign = await db.campaign.findUnique({
+    where: {id: id},
   })
+  if (campaign.userId !== currentUser?.sub) {
+    throw new Error('Not authorized')
+  }
+  return campaign
 }
 
 export const createCampaign: MutationResolvers['createCampaign'] = async ({input}) => {

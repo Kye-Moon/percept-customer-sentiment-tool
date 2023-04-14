@@ -12,7 +12,7 @@ export const schema = gql`
   }
 
   type Query {
-    campaigns(userId:String!): [Campaign!]! @skipAuth
+    campaigns: [Campaign!]! @skipAuth
     campaign(id: Int!): Campaign @skipAuth
   }
 

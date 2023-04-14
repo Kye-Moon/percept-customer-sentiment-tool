@@ -6,6 +6,7 @@ export const schema = gql`
     body: String!
     mentionSource: String!
     username: String!
+    status: ReviewStatus!
     userDescription: String
     profileImageUrl: String!
     archived: Boolean
@@ -15,6 +16,14 @@ export const schema = gql`
 
   type FetchedCount{
     count: Int!
+  }
+
+  enum ReviewStatus {
+    NEW
+    RECCOMENDED
+    ARCHIVED
+    FAVORITE
+    ACTIVE
   }
 
   enum QueryFilter{
@@ -47,6 +56,7 @@ export const schema = gql`
     body: String
     mentionSource: String
     username: String
+    status: ReviewStatus
     userDescription: String
     profileImageUrl: String
   }
