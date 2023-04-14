@@ -3,6 +3,7 @@ import {db} from "src/lib/utils/db";
 
 
 interface ReviewDto {
+  campaignId: string
   createAt: string
   externalReference: string
   body: string
@@ -32,10 +33,14 @@ export const handler = async (event: DynamoDBStreamEvent, context: Context) => {
   console.log("consumer invoked")
   await db.$connect()
   for (const record of event.Records) {
-    const externalReference = record.dynamodb.NewImage.SK.S
+    const sortkey = record.dynamodb.NewImage.SK.S
+    const externalReference = sortkey.split("#")[0]
+    const campaignId = sortkey.split("#")[1]
+    console.log(campaignId)
     const mention = record.dynamodb.NewImage.item.M
     //const campaignId = mention.campaignId.S // need to add campaignId to the mention
     const review: ReviewDto = {
+      campaignId: campaignId,
       body: mention.body.S,
       createAt: mention.createAt.S,
       externalReference: externalReference,
@@ -57,7 +62,7 @@ export const handler = async (event: DynamoDBStreamEvent, context: Context) => {
           campaigns:{
             create: {
               campaign:{
-                connect:{id:1}
+                connect:{id:parseInt(campaignId)}
               }
             }
           }

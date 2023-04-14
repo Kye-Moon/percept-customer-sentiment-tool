@@ -16,7 +16,7 @@ import type { ComponentMeta } from '@storybook/react'
 import Header from './Header'
 
 export const generated = () => {
-  return <Header />
+  return <Header sidebarOpen={undefined} setSidebarOpen={undefined} />
 }
 
 export default {

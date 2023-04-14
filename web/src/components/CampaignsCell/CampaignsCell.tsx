@@ -1,10 +1,10 @@
-import type { CampaignsQuery } from 'types/graphql'
+import type {Campaign, CampaignsQuery} from 'types/graphql'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 import CampaignCard from "src/components/Cards/CampaignCard/CampaignCard";
 
 export const QUERY = gql`
-  query CampaignsQuery($userId:String!) {
-    campaigns(userId: $userId) {
+  query CampaignsQuery{
+    campaigns {
       id
       description
       title
@@ -12,6 +12,7 @@ export const QUERY = gql`
       updatedAt
       campaignReviews {
         review {
+          status
           id
         }
       }
@@ -28,16 +29,17 @@ export const Failure = ({ error }: CellFailureProps) => (
 )
 
 export const Success = ({ campaigns }: CellSuccessProps<CampaignsQuery>) => {
+
   return (
     <ul>
       <div className="grid grid-cols-2 gap-6">
-      {campaigns.map((item) => {
-        console.log(item)
-        return <CampaignCard
-          description={item.description}
-          newReviewsCount={1}
-          reviewsCount={item.campaignReviews.length}
-          title={item.title}
+      {campaigns.map((campaign:Campaign) => {
+        const newReviewsCount = campaign.campaignReviews.filter((review) => review.review.status === 'NEW').length
+         return <CampaignCard
+            key={campaign.id}
+            campaign={campaign}
+            reviewsCount={campaign.campaignReviews.length}
+            newReviewsCount={newReviewsCount}
         />
       })}
       </div>

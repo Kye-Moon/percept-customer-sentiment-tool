@@ -8,7 +8,7 @@ export const schema = gql`
   }
 
   type Query {
-    campaignReviews: [CampaignReview!]! @requireAuth
+    campaignReviews(campaignId: Int!): [CampaignReview!]! @skipAuth
     campaignReview(id: Int!): CampaignReview @requireAuth
   }
 

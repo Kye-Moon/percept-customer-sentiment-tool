@@ -1,7 +1,6 @@
-import {IntegrationRequestPublisherService} from "src/lib/RequestPublisherLib/IntegrationRequestPublisherService";
-import {mockHttpEvent} from '@redwoodjs/testing/api'
 
-let integrationRequestPublisherService = new IntegrationRequestPublisherService()
+import {mockHttpEvent} from '@redwoodjs/testing/api'
+const integrationRequestPublisherService = require("src/lib/RequestPublisherLib/IntegrationRequestPublisherService")
 
 describe('processIntegrationRequestEvent', () => {
   afterEach(() => {

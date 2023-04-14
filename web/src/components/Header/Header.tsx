@@ -1,14 +1,10 @@
-import React, {useState} from 'react';
-
-
-import DropdownProfile from "src/components/DropdownProfile";
-import Sidebar from "src/components/Sidebar/Sidebar";
+import React from 'react';
 
 const Header = ({sidebarOpen, setSidebarOpen}) => {
   return (
     <div className="flex  ">
       <div className="relative flex flex-col flex-1  ">
-        <header className="bg-base-100  z-30 bg-neutral">
+        <header className="bg-base-100  z-30 flex justify-end ">
           <div className="p-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16 -mb-px">
                 <div className="dropdown dropdown-bottom dropdown-end">

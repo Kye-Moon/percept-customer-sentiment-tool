@@ -3,12 +3,10 @@ import Header from "src/components/Header/Header";
 import WelcomeBanner from "src/components/WelcomeBanner/WelcomeBanner";
 //@ts-ignore
 import CampaignsCell from "src/components/CampaignsCell/CampaignsCell";
-import {Link,routes} from "@redwoodjs/router";
-import {useAuth} from "@redwoodjs/auth";
+import {Link, routes} from "@redwoodjs/router";
 
 
 const DashboardPage = () => {
-const {userMetadata} = useAuth()
   return (
     <>
       <MetaTags title="Dashboard" description="Dashboard page"/>
@@ -23,11 +21,7 @@ const {userMetadata} = useAuth()
             <h1 className={"text-2xl font-semibold"}>Your Review Campaigns</h1>
             <Link className={"btn btn-primary"} to={routes.createCampaign()}>Create New Campaign</Link>
           </div>
-
-
-            <CampaignsCell
-            userId={userMetadata.sub}/>
-
+          <CampaignsCell/>
         </div>
 
       </div>

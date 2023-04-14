@@ -1,16 +1,20 @@
-import type {
-  QueryResolvers,
-  MutationResolvers,
-  CampaignReviewRelationResolvers,
-} from 'types/graphql'
+import type {CampaignReviewRelationResolvers, MutationResolvers, QueryResolvers,} from 'types/graphql'
 
-import { db } from 'src/lib/utils/db'
+import {db} from 'src/lib/utils/db'
+import {checkUserOwnsCampaign} from "src/lib/CampaignsLib/functions";
 
-export const campaignReviews: QueryResolvers['campaignReviews'] = () => {
-  return db.campaignReview.findMany()
+export const campaignReviews: QueryResolvers['campaignReviews'] = async ({campaignId}) => {
+  const userOwnsCampaign = await checkUserOwnsCampaign(campaignId, context.currentUser?.sub as string)
+  console.log(userOwnsCampaign)
+  if (userOwnsCampaign) {
+    return await db.campaignReview.findMany({where: {campaignId: campaignId}})
+   } else {
+   throw new Error('Not authorized')
+  }
 }
 
 export const campaignReview: QueryResolvers['campaignReview'] = ({ id }) => {
+
   return db.campaignReview.findUnique({
     where: { id },
   })

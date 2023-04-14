@@ -1,6 +1,5 @@
 import React from "react";
-import InboxIconFilled from "src/images/svgs/InboxIconFilled.svg";
-import {Link, NavLink} from "@redwoodjs/router";
+import {NavLink} from "@redwoodjs/router";
 
 interface SideBarMenuItemProps {
   title: string
@@ -10,17 +9,17 @@ interface SideBarMenuItemProps {
 
 export const SideBarMenuItem = ({title, Icon, to}: SideBarMenuItemProps) => {
   return (
-    <div>
+    <div className={''}>
       <NavLink
-        className={`block text-white hover:text-primary truncate transition duration-150`} to={to}
-        activeClassName={"text-primary"} >
+        className={`block text-white  hover:opacity-50 truncate px-2 rounded-lg`} to={to}
+        activeClassName={"text-primary bg-primary"}>
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <Icon className={"w-6 h-6"}/>
+            <Icon className={"w-3 h-3"}/>
             <span
               className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                              {title}
-                            </span>
+              {title}
+             </span>
           </div>
         </div>
       </NavLink>
