@@ -8,12 +8,13 @@
 [web]
   title = "Redwood App"
   port = 8910
-  apiUrl = "${API_URL:/api}"       # Set API_URL in production to the Serverless deploy endpoint of your api service, see https://redwoodjs.com/docs/deploy/serverless-deploy
+  apiUrl = "/.redwood/functions"       # Set API_URL in production to the Serverless deploy endpoint of your api service, see https://redwoodjs.com/docs/deploy/serverless-deploy
   includeEnvironmentVariables = [
     "AUTH0_DOMAIN",
     "AUTH0_CLIENT_ID",
     "AUTH0_REDIRECT_URI",
     "AUTH0_AUDIENCE",
+    "AWS_IMAGE_BUCKET"
   ]
 [api]
   port = 8911

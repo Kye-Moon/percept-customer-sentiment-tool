@@ -1,9 +1,7 @@
-import type { CampaignIntegration } from '@prisma/client'
+import {db} from "src/lib/utils/db";
 
 const campaignIntegrations = require('./campaignIntegrations')
 
-import type { StandardScenario } from './campaignIntegrations.scenarios'
-import {db} from "src/lib/utils/db";
 const axios = require('axios')
 jest.mock('axios')
 
@@ -19,6 +17,7 @@ describe('campaignIntegrations', () => {
         userId: "1",
         title: "test-title",
         description: "test",
+        landingPageSlug: "slug",
       }
     })
     const input = {

@@ -68,6 +68,28 @@ functions:
       - httpApi:
           path: /graphql
           method: POST
+  uploadLandingPageImage:
+    description: graphql function deployed on AWS Lambda
+    package:
+      artifact: dist/zipballs/uploadLandingPageImage.zip
+    memorySize: 1024 # in megabytes
+    timeout: 25      # seconds (max: 900 [15 minutes])
+    tags: # tags for this specific lambda function
+      endpoint: /landing-page-image
+    handler: uploadLandingPageImage.handler
+    events:
+      - httpApi: # if a function should be limited to only GET or POST you can remove one or the other here
+          path: /landing-page-image
+          method: POST
+          cors: true
+    iamRoleStatementsName: upload-landing-page-image-role
+    iamRoleStatements:
+      - Effect: 'Allow'
+        Action:
+          - "s3:PutObject"
+        Resource:
+          - "arn:aws:s3:::vigilant-octo-guacamole-images/*"
+
   integrationsRequestPublisher:
     package:
       artifact: dist/zipballs/integrationRequestPublisher.zip

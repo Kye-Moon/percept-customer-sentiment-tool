@@ -23,7 +23,7 @@ export const createCampaignIntegration: MutationResolvers['createCampaignIntegra
       data: input,
     })
 
-    if (input.productHuntReviewsUrl !== undefined) {
+    if (input.productHuntReviewsUrl) {
       const searchParams = new URLSearchParams({
         campaignId: input.campaignId.toString(),
         productHuntReviewsUrl: input.productHuntReviewsUrl,

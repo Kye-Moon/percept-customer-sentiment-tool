@@ -7,8 +7,9 @@ export const schema = gql`
     status: String!
     title: String!
     description: String!
-    integrations: [CampaignIntegration]!
-    campaignReviews: [CampaignReview]!
+    landingPageSlug: String!
+    integrations: [CampaignIntegration]
+    campaignReviews: [CampaignReview]
   }
 
   type Query {
@@ -21,7 +22,17 @@ export const schema = gql`
     title: String!
     description: String!
     integrations: CampaignIntegrationInput
+    landingPageDetails: LandingPageDetailsInput!
   }
+
+  input LandingPageDetailsInput {
+    title: String!
+    message: String
+    questions: [String]
+    landingPageSlug: String!
+    logoImageUrl: String
+  }
+
   input CampaignIntegrationInput {
     productHuntPostUrl: String
     productHuntReviewsUrl: String
