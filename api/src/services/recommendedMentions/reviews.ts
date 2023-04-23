@@ -1,17 +1,15 @@
-import type {
-  CreateReviewInput,
-  MutationResolvers,
-  QueryResolvers,
-} from 'types/graphql'
+import type {MutationResolvers, QueryResolvers,} from 'types/graphql'
 
 import {
   getfilteredReviews,
   markReviewAsArchived,
-  markReviewAsFavourite, markReviewAsOnWall
+  markReviewAsFavourite,
+  markReviewAsOnWall
 } from "src/lib/reviewsLib/functions";
 import {
   review_create,
-  review_createMany, review_delete,
+  review_createMany,
+  review_delete,
   review_findMany,
   review_findUnique,
   review_update
@@ -57,8 +55,8 @@ export const createManyReviews: MutationResolvers['createManyReviews'] = async (
    return review_createMany(input)
 }
 
-export const createReview: MutationResolvers['createReview'] = ({input}) => {
-  return review_create(input)
+export const createReview: MutationResolvers['createReview'] = ({input, campaignId}) => {
+  return review_create(input,campaignId)
 }
 
 export const updateReview: MutationResolvers['updateReview'] =

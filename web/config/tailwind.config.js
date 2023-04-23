@@ -1,6 +1,7 @@
 const plugin = require('tailwindcss/plugin');
 
 module.exports = {
+  mode: 'jit',
   content: [
     './index.html',
     './src/**/*.{js,jsx,ts,tsx}',
@@ -10,25 +11,24 @@ module.exports = {
       {
         mytheme: {
 
-          "primary": "#2a7dea",
 
-          "secondary": "#a63cff",
+          "primary": "#8b5cf6",
 
-          "accent": "#ef83cf",
+          "secondary": "#60a5fa",
 
-          "neutral": "#1c2326",
+          "accent": "#ff66fb",
 
-          "base-100": "#070d1f",
+          "neutral": "#1f2937",
 
-          "base-content": "#e7e7e7",
+          "base-100": "#f3f4f6",
 
-          "info": "#5C89D1",
+          "info": "#93c5fd",
 
-          "success": "#48DBCC",
+          "success": "#86efac",
 
-          "warning": "#CE9012",
+          "warning": "#fde047",
 
-          "error": "#E91C60",
+          "error": "#fca5a5",
         },
       },
     ],

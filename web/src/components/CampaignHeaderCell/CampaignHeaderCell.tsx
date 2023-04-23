@@ -30,7 +30,7 @@ export const Success = ({campaign}: CellSuccessProps<FindCampaignHeaderQuery, Fi
       {/* Left: Title */}
       <div className="mb-4 sm:mb-0 py-8 space-y-2 ">
         <h1 className="text-2xl md:text-6xl text-primary font-bold">{campaign.title}</h1>
-        <h1 className="text-xl md:text-xl text-white/60 font-bold">{campaign.description}</h1>
+        <h1 className="text-xl md:text-xl  font-bold">{campaign.description}</h1>
       </div>
 
       {/* Right: Actions */}

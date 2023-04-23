@@ -8,7 +8,8 @@ export const schema = gql`
     username: String!
     status: ReviewStatus!
     userDescription: String
-    profileImageUrl: String!
+    userEmailAdress: String
+    profileImageUrl: String
     archived: Boolean
     favourite: Boolean
     onWall: Boolean
@@ -41,13 +42,13 @@ export const schema = gql`
   }
 
   input CreateReviewInput {
-    createAt: String!
-    externalReference: String!
+    externalReference: String
     body: String!
     mentionSource: String!
     username: String!
-    userDescription: String!
-    profileImageUrl: String!
+    userDescription: String
+    userEmailAddress: String
+    profileImageUrl: String
   }
 
   input UpdateReviewInput {
@@ -67,7 +68,7 @@ export const schema = gql`
     addReviewToWall(id:Int!): Review! @skipAuth
 
     ## CRUD #####
-    createReview(input: CreateReviewInput!): Review! @requireAuth
+    createReview(input: CreateReviewInput!, campaignId: Int): Review! @requireAuth
     createManyReviews(input: [CreateReviewInput!]!): FetchedCount! @requireAuth
     updateReview(id: Int! input: UpdateReviewInput!): Review! @requireAuth
     deleteReview(id: Int!): Review! @requireAuth

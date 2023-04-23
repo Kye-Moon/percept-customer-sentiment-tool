@@ -1,11 +1,8 @@
 import {LandingPageQuestionsForm} from "./LandingPageQuestionsForm";
-import {
-  CreateCampaignLandingPageFormSectionProps,
-  FormData,
-} from "src/pages/CreateCampaignPage/CreateCampaignPage";
-import {useState} from "react";
+import {CreateCampaignLandingPageFormSectionProps, FormData,} from "src/pages/CreateCampaignPage/CreateCampaignPage";
 import {UseFormRegister, UseFormWatch} from "react-hook-form";
-import { client } from 'filestack-react'
+import {handleImageUploadOnChange} from "src/utils/imageUtils";
+
 export interface FormSectionProps {
   register: UseFormRegister<FormData>;
   watch?: UseFormWatch<FormData>;
@@ -15,11 +12,6 @@ export interface FormSectionProps {
 
 const CreateCampaignLandingPageForm = ({register, setImagePreview, errors}:FormSectionProps) => {
 
-  function showPreview(event){
-    if(event.target.files.length > 0){
-      setImagePreview(URL.createObjectURL(event.target.files[0]))
-    }
-  }
 
   return (
     <div className={'space-y-8'}>
@@ -49,7 +41,7 @@ const CreateCampaignLandingPageForm = ({register, setImagePreview, errors}:FormS
           {...register("logo")}
           className="block text-sm text-gray-400 cursor-pointer bg-base-100 focus:outline-none "
           accept={"image/*"}
-          onChange={(e) => {showPreview(e)}}
+          onChange={(e) => {handleImageUploadOnChange(e, setImagePreview)}}
           aria-describedby="file_input_help" id="file-ip-1" type="file"/>
         {errors.logo && <span className={'text-error'}>This field is required</span>}
         <label className="label">

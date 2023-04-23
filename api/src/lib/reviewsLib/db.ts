@@ -16,9 +16,15 @@ export const review_findUnique = (id:number) => {
   })
 }
 
-export const review_create = (input:NonNullable<CreateReviewInput>) => {
+export const review_create = (input:NonNullable<CreateReviewInput>, campaignId:number) => {
+  console.log("campaignId", campaignId)
   return db.review.create({
-    data: input,
+    data: {
+      ...input,
+      campaigns: campaignId ? {
+        connect: {id: campaignId},
+      } : {}
+    },
   })
 }
 

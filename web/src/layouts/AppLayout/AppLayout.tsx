@@ -8,7 +8,7 @@ type AppLayoutProps = {
   children?: React.ReactNode
 }
 export const QUERY = gql`
-  query FindCampaignHeaderQuery($id: Int!) {
+  query FindCampaignQuery($id: Int!) {
     campaign: campaign(id: $id) {
       id
       title
@@ -60,7 +60,7 @@ const AppLayout = ({children}: AppLayoutProps) => {
             <div className="flex h-screen overflow-x-hidden">
               {/* Sidebar */}
               <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}/>
-              <div className="relative flex flex-col flex-1 pr-36 px-12 bg-base-100 overflow-y-auto overflow-x-hidden">
+              <div className="relative flex flex-col flex-1 pr-36 px-12  overflow-y-auto overflow-x-hidden">
                 {children}
               </div>
             </div>

@@ -1,11 +1,9 @@
 import {MetaTags} from '@redwoodjs/web'
 
-import {useContext, useState} from 'react'
-import {TextReviewForm} from "src/components/Forms/TextReviewForm";
-import {CampaignLandingPageTemplateHero} from "src/components/Heros/CampaignLandingPageTemplateHero";
+import {useState} from 'react'
 //@ts-ignore
-import CampaignLandingPageTemplateCell from "src/components/CampaignLandingPageTemplateCell/CampaignLandingPageTemplateCell";
-import {CampaignContext} from "src/context/CampaignContext";
+import CampaignLandingPageTemplateCell
+  from "src/components/CampaignLandingPageTemplateCell/CampaignLandingPageTemplateCell";
 import {useParams} from "@redwoodjs/router";
 
 export enum REVIEW_TYPES {

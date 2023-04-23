@@ -5,9 +5,11 @@ import {checkUserOwnsCampaign} from "src/lib/CampaignsLib/functions";
 
 export const campaignReviews: QueryResolvers['campaignReviews'] = async ({campaignId}) => {
   const userOwnsCampaign = await checkUserOwnsCampaign(campaignId, context.currentUser?.sub as string)
-  console.log(userOwnsCampaign)
   if (userOwnsCampaign) {
-    return await db.campaignReview.findMany({where: {campaignId: campaignId}})
+    return await db.campaignReview.findMany({
+      where: {campaignId: campaignId},
+      orderBy: {createdAt: 'asc'},
+    })
    } else {
    throw new Error('Not authorized')
   }

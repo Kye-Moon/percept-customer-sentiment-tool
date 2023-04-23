@@ -34,10 +34,8 @@ export const QUERY = gql`
 export const Loading = () => {
   return (
     <div>
-      <div className={'flex flex-col space-y-8 py-12 place-items-center justify-center'}>
-        <progress className="progress w-11/12 h-96"></progress>
-        <progress className="progress w-11/12 h-96"></progress>
-        <progress className="progress w-11/12 h-96"></progress>
+      <div className={'flex flex-col break-inside-avoid py-12 place-items-center justify-center'}>
+
       </div>
     </div>
   )
