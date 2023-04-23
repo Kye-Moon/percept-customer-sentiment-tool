@@ -74,13 +74,9 @@ function Sidebar({sidebarOpen, setSidebarOpen}) {
                 <div className="space-y-2">
                   <h2 className={'font-semibold'}>LINKS</h2>
                   <div className={'pl-4'}>
-                    <SideBarMenuItem Icon={LinkIcon} title={"Public landing page"} to={routes.campaignLandingPageTemplate({id:campaign.title})}/>
+                    <SideBarMenuItem Icon={LinkIcon} title={"Public landing page"} to={routes.campaignLandingPageTemplate({id:campaign.landingPageSlug})}/>
                   </div>
                 </div>
-                <SideBarMenuItem Icon={RectangleGroupIconFilled} title={"Embeds"} to={""}/>
-                <SideBarMenuItem Icon={RectangleGroupIconFilled} title={"Analytics"} to={routes.yourReviews()}/>
-                <SideBarMenuItem Icon={RectangleGroupIconFilled} title={"Links"} to={routes.yourReviews()}/>
-                <SideBarMenuItem Icon={RectangleGroupIconFilled} title={"Settings"} to={routes.yourReviews()}/>
               </ul>
             </div>
           </div>

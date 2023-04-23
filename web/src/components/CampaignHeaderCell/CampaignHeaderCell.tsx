@@ -28,9 +28,9 @@ export const Success = ({campaign}: CellSuccessProps<FindCampaignHeaderQuery, Fi
     <div className="sm:flex sm:justify-between sm:items-center mb-8 mt-8">
 
       {/* Left: Title */}
-      <div className="mb-4 sm:mb-0 py-8 space-y-2 ml-20">
-        <h1 className="text-2xl md:text-3xl text-white/30 font-bold">{campaign.title}</h1>
-        <h1 className="text-xl md:text-xl text-slate-600 font-bold">{campaign.description}</h1>
+      <div className="mb-4 sm:mb-0 py-8 space-y-2 ">
+        <h1 className="text-2xl md:text-6xl text-primary font-bold">{campaign.title}</h1>
+        <h1 className="text-xl md:text-xl text-white/60 font-bold">{campaign.description}</h1>
       </div>
 
       {/* Right: Actions */}

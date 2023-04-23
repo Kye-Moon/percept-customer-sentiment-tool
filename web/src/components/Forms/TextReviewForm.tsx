@@ -1,3 +1,7 @@
+// @ts-ignore
+import UploadAvatarImage from '../../images/UploadAvatar.jpeg'
+
+
 export const TextReviewForm = () => {
   return (
     <>
@@ -27,7 +31,7 @@ export const TextReviewForm = () => {
           <div className={''}>
             <div className="avatar">
               <div className="w-12 rounded-full">
-                <img src=""  alt={""}/>
+                <img src={UploadAvatarImage}  alt={""}/>
               </div>
             </div>
           </div>

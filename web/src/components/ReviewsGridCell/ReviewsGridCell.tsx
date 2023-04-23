@@ -31,9 +31,27 @@ export const QUERY = gql`
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => {
+  return (
+    <div>
+      <div className={'flex flex-col space-y-8 py-12 place-items-center justify-center'}>
+        <progress className="progress w-11/12 h-96"></progress>
+        <progress className="progress w-11/12 h-96"></progress>
+        <progress className="progress w-11/12 h-96"></progress>
+      </div>
+    </div>
+  )
+}
 
-export const Empty = () => <div>Empty</div>
+export const Empty = () => {
+  return (
+    <>
+      <div>
+        <h1 className={'text-accent font-semibold text-2xl'}>You dont have any reviews yet</h1>
+      </div>
+    </>
+  )
+}
 
 export const Failure = ({error}: CellFailureProps<FindReviewsGridQueryVariables>) => (
   <div style={{color: 'red'}}>Error: {error?.message}</div>

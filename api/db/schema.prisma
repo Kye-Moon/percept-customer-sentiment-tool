@@ -36,8 +36,10 @@ model Campaign {
   status          String                @default("ACTIVE")
   title           String
   description     String
+  landingPageSlug String                @unique
   integrations    CampaignIntegration[]
   reviews         CampaignReview[]
+  landingPage     CampaignLandingPage?
 }
 
 model CampaignIntegration {
@@ -59,4 +61,22 @@ model CampaignReview {
   review     Review?   @relation(fields: [reviewId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@unique([campaignId, reviewId])
+}
+
+model CampaignLandingPage {
+  id         Int      @id @default(autoincrement())
+  campaignId Int    @unique
+  campaign   Campaign @relation(fields: [campaignId], references: [id])
+  campaignSlug String @unique
+  PageTitle String
+  pageMessage String?
+  questionOne String?
+  questionTwo String?
+  questionThree String?
+  questionFour String?
+  LogoUrl String?
+  primaryColor String?
+  secondaryColor String?
+  textColor String?
+  updatedAt  DateTime @updatedAt
 }

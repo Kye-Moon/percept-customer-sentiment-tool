@@ -6,6 +6,7 @@ import type {
 
 import {db} from 'src/lib/utils/db'
 import {createCampaignIntegration} from "src/services/campaignIntegrations/campaignIntegrations";
+import {createCampaignLandingPage} from "src/services/campaignLandingPages/campaignLandingPages";
 const axios = require('axios')
 
 export const campaigns: QueryResolvers['campaigns'] = () => {
@@ -30,16 +31,34 @@ export const createCampaign: MutationResolvers['createCampaign'] = async ({input
       userId: input.userId,
       title: input.title,
       description: input.description,
+      landingPageSlug: input.landingPageDetails.landingPageSlug.toLowerCase(),
     },
   })
-
-  createCampaignIntegration({input: {
+  const integrationsPopulated = input.integrations.productHuntPostUrl || input.integrations.productHuntReviewsUrl || input.integrations.twitterCompanyName || input.integrations.companyTwitterHandle
+  if (!campaign) {
+    throw new Error('Campaign creation failed')
+  }
+  if (integrationsPopulated) {
+    await createCampaignIntegration({
+      input: {
         campaignId: campaign.id,
         productHuntPostUrl: input.integrations.productHuntPostUrl,
         productHuntReviewsUrl: input.integrations.productHuntReviewsUrl,
         twitterCompanyName: input.integrations.twitterCompanyName,
         companyTwitterHandle: input.integrations.companyTwitterHandle,
       }
+    })
+  }
+
+   await createCampaignLandingPage({
+    input: {
+      campaignId: campaign.id,
+      campaignSlug: input.landingPageDetails.landingPageSlug.toLowerCase(),
+      pageTitle: input.landingPageDetails.title,
+      pageMessage: input.landingPageDetails.message,
+      questions: input.landingPageDetails.questions,
+      logoUrl: input.landingPageDetails.logoImageUrl,
+    }
   })
 
   return campaign

@@ -21,8 +21,7 @@ function ReviewCard({ tab,
   const logo = (review.mentionSource === "producthunt") ? PhLogo : TwitterLogo
 
   return (
-    <div
-      className="col-span-full text-white px-12 sm:col-span-6 xl:col-span-4 bg-neutral shadow-lg rounded-xl ">
+    <div className="col-span-full text-white px-12 sm:col-span-6 xl:col-span-4 bg-white/5  shadow-lg rounded-xl ">
       <div className="flex flex-col h-full">
         {/* Image + name */}
         <div className="grow p-5">
@@ -53,7 +52,7 @@ function ReviewCard({ tab,
 
           {/* Content */}
           <div className="mt-2 px-12 pb-4 ">
-            <h1 className="text-md text-white">{review.body}</h1>
+            <h1 className="text-lg text-white">{review.body}</h1>
           </div>
         </div>
 

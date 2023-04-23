@@ -12,7 +12,8 @@ const CampaignPage = ({id}) => {
       <div className="px-2 sm:px-6 py-8 w-full max-w-9xl mx-auto">
         <CampaignHeaderCell id={id}/> {/* CampaignContext is set when this renders */}
         {/* Reviews */}
-        <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto columns-2 md:columns-3 lg:columns-1 ">
+        <div className={'divider'}></div>
+        <div className="py-8 w-full max-w-9xl mx-auto columns-2 md:columns-3 lg:columns-1">
           <ReviewsGridCell
             campaignId={id}
           />
