@@ -16,7 +16,7 @@ import type { ComponentMeta } from '@storybook/react'
 import CreateCampaignLandingPageFormSection from './CreateCampaignLandingPageFormSection'
 
 export const generated = () => {
-  return <CreateCampaignLandingPageFormSection />
+  //ßreturn <CreateCampaignLandingPageFormSection  errors={{}} register={()=>void} watch={Ω}/>
 }
 
 export default {

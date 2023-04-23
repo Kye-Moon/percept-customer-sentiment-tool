@@ -20,7 +20,6 @@ import {useAuth} from './auth'
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
-
       <Route path="/" page={HomePage} name="home"/>
       <Private unauthenticated={"home"}>
         <Route path="/leave-review/{id:string}" page={CampaignLandingPageTemplate} name="campaignLandingPageTemplate"/>

@@ -13,24 +13,14 @@ import CreateCampaignLandingPageFormSection
 import * as yup from "yup";
 import {yupResolver} from '@hookform/resolvers/yup';
 import {useState} from "react";
-import {uploadCampaignLandingPageImage} from "src/services/campaignService";
+import {removeEmptyFields} from "src/utils/formUtils";
+import {UploadResponse} from "types/interfaces";
+import {ImageUploadType, uploadImageToS3} from "src/utils/imageUtils";
 
 export interface CreateCampaignLandingPageFormSectionProps {
   register: UseFormRegister<FormData>;
   watch?: UseFormWatch<FormData>;
   errors: FieldErrors<FormData>;
-}
-
-interface UploadResponse {
-  data: {
-    Bucket: string,
-    ETag: string,
-    Key: string,
-    Location: string,
-    ServerSideEncryption: string,
-    key: string,
-  }
-  message: string
 }
 
 const schema = yup.object({
@@ -55,15 +45,6 @@ const schema = yup.object({
 
 export type FormData = yup.InferType<typeof schema>;
 
-function removeEmptyFields(data) {
-  Object.keys(data).forEach(key => {
-    if (data[key] === '' || data[key] == null) {
-      delete data[key];
-    }
-  });
-}
-
-
 const CreateCampaignPage = () => {
   const {userMetadata} = useAuth()
   const {register, handleSubmit, watch, reset, formState: {errors}} = useForm<FormData>({
@@ -77,28 +58,33 @@ const CreateCampaignPage = () => {
 
   const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
     setSubmitting(true)
-    removeEmptyFields(data)
+    const cleanedData = removeEmptyFields(data)
     const token = await auth.getToken()
 
-    const uploadResponse: UploadResponse = await uploadCampaignLandingPageImage("slug", data.logo[0], token);
+    const uploadResponse: UploadResponse = await uploadImageToS3({
+      image: data.logo[0],
+      type: ImageUploadType.CAMPAIGN_LANDING_PAGE,
+      identifier: cleanedData.landingPageSlug,
+      token: token}
+    );
 
     createCampaign({
       variables: {
         input: {
           userId: userMetadata.sub,
-          title: data.title,
-          description: data.description,
+          title: cleanedData.title,
+          description: cleanedData.description,
           integrations: {
-            productHuntPostUrl: data.productHuntPostUrl,
-            productHuntReviewsUrl: data.productHuntReviewsUrl,
-            twitterCompanyName: data.twitterCompanyName,
-            companyTwitterHandle: data.companyTwitterHandle
+            productHuntPostUrl: cleanedData.productHuntPostUrl,
+            productHuntReviewsUrl: cleanedData.productHuntReviewsUrl,
+            twitterCompanyName: cleanedData.twitterCompanyName,
+            companyTwitterHandle: cleanedData.companyTwitterHandle
           },
           landingPageDetails: {
-            title: data.pageTitle,
-            message: data.pageMessage,
-            questions: [data.question1, data.question2, data.question3, data.question4],
-            landingPageSlug: data.landingPageSlug,
+            title: cleanedData.pageTitle,
+            message: cleanedData.pageMessage,
+            questions: [cleanedData.question1, cleanedData.question2, cleanedData.question3, cleanedData.question4],
+            landingPageSlug: cleanedData.landingPageSlug,
             logoImageUrl: uploadResponse.data.Location
           },
         }

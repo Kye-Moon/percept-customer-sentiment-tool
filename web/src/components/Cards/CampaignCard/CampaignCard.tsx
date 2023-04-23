@@ -12,7 +12,7 @@ const CampaignCard = ({campaign, reviewsCount, newReviewsCount}: CampaignCardPro
 
   return (
     <Link className={""} to={routes.campaign({id: campaign.id, tab: "new"})}>
-      <div className="card bg-neutral shadow-xl hover:bg-primary-content/20">
+      <div className="card shadow-2xl bg-white/75  hover:bg-primary hover:text-white ">
         <div className="card-body">
           <div className={'flex justify-between'}>
             <div className={"pb-3"}>

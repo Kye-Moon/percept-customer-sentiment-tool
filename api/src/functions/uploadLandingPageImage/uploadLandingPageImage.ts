@@ -23,15 +23,15 @@ export const myHandler = async (event: APIGatewayEvent, _context: Context) => {
   if (isAuthenticated()) {
     try {
       const {body} = event
-      const {image, campaignSlug} = JSON.parse(body)
+      const {image, uploadType,identifier } = JSON.parse(body)
       const base64Data = Buffer.from(image.replace(/^data:image\/\w+;base64,/, ''), 'base64')
-      const type = image.split(';')[0].split('/')[1]
+      const imgType = image.split(';')[0].split('/')[1]
       const params: PutObjectRequest = {
         Bucket: BUCKET_NAME,
-        Key: `images/landing-page/${campaignSlug}/${Date.now()}.${type}`,
+        Key: `images/${uploadType}/${identifier}/${Date.now()}.${imgType}`,
         Body: base64Data,
         ContentEncoding: 'base64',
-        ContentType: `image/${type}`,
+        ContentType: `image/${imgType}`,
       }
       const uploadResult = await s3.upload(params).promise()
       logger.info(`uploadResult: ${JSON.stringify(uploadResult)}`)

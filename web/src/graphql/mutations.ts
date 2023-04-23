@@ -5,6 +5,13 @@ export const UPDATE_REVIEW= gql`
     }
   }
 `
+export const CREATE_REVIEW = gql`
+  mutation CreateReviewMutation($input: CreateReviewInput!, $campaignId: Int) {
+    createReview(input: $input, campaignId: $campaignId){
+      id
+    }
+  }
+`
 
 
 export const CREATE_CAMPAIGN = gql`
@@ -14,4 +21,5 @@ export const CREATE_CAMPAIGN = gql`
     }
   }
 `
+
 

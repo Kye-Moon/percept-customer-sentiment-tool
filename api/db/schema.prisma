@@ -10,16 +10,18 @@ generator client {
 
 model Review {
   id                Int               @id @default(autoincrement())
-  createAt          String
-  externalReference String            @unique
+  createAt          DateTime            @default(now())
+  externalReference String?           @unique
   body              String
   mentionSource     String
   username          String
+  userEmailAddress  String?
   userDescription   String?
-  profileImageUrl   String
+  profileImageUrl   String?
   status            ReviewStatus            @default(NEW)
   campaigns         CampaignReview[]
 }
+
 enum ReviewStatus {
   NEW
   RECCOMENDED
@@ -53,8 +55,10 @@ model CampaignIntegration {
   updatedAt             DateTime @updatedAt
 }
 
+
 model CampaignReview {
   id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
   campaignId Int
   reviewId   Int
   campaign   Campaign? @relation(fields: [campaignId], references: [id], onDelete: Cascade, onUpdate: Cascade)

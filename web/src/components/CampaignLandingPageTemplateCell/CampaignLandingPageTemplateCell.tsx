@@ -6,7 +6,7 @@ import type {
 import type {CellFailureProps, CellSuccessProps} from '@redwoodjs/web'
 import {useState} from "react";
 import {CampaignLandingPageTemplateHero} from "src/components/Heros/CampaignLandingPageTemplateHero";
-import {TextReviewForm} from "src/components/Forms/TextReviewForm";
+import {TextReviewForm} from "src/components/Forms/TextReviewForm/TextReviewForm";
 
 export const QUERY = gql`
   query FindCampaignLandingPageTemplateQuery($slug: String!) {
@@ -52,7 +52,7 @@ export const Success = ({campaignLandingPage}: CellSuccessProps<FindCampaignLand
         />
       </div>
       <div className={'row-span-6 col-span-2 space-y-20  flex flex-col bg-base-100  place-content-center '}>
-        {reviewType === REVIEW_TYPES.TEXT ? <TextReviewForm/> : <></>}
+        {reviewType === REVIEW_TYPES.TEXT ? <TextReviewForm campaignId={campaignLandingPage.campaignId}/> : <></>}
       </div>
     </div>
   )
