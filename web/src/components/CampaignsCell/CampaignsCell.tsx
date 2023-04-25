@@ -42,7 +42,7 @@ export const Success = ({campaigns}: CellSuccessProps<CampaignsQuery>) => {
 
   return (
     <ul>
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-3 gap-6">
         {campaigns.map((campaign: Campaign) => {
           const newReviewsCount = campaign.campaignReviews.filter((review) => review.review.status === 'NEW').length
           return <CampaignCard

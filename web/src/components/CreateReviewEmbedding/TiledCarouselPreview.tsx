@@ -19,13 +19,13 @@ export const TiledCarouselPreview = ({cardColor,textColor, numberOfCards}:TiledC
                         <img src={PerceptLogo} className ="rounded-box w-full w-12 h-12" alt="..."/>
                       </div>
                       <div>
-                        <h2 className="font-bold text-lg" style={{color:textColor}}>Kye</h2>
-                        <p className="text-sm text-gray-500" style={{color:textColor}}>test</p>
+                        <h2 className="font-bold text-lg" style={{color:textColor}}>Stephen Smith</h2>
+                        <p className="text-sm text-gray-500" style={{color:textColor}}>CEO @ percept</p>
                       </div>
                     </div>
                     <div className="overflow-y-clip  ">
                       <p className="text-md font-semibold overflow-y-clip" style={{color:textColor}}>
-                        I've used @Superhuman for just 5 hours since my onboarding with their team and my life is officially changed. I have never gotten through so many emails in a day. I may finally get some sleep tonight and not wake up in a cold sweat about an email I forgot to respond to
+                        I've used @Superhuman for just 5 hours since my onboarding with their team and my life is officially changed. I have never gotten pond to
                       </p>
                     </div>
                   </div>

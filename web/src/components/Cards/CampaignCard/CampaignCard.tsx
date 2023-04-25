@@ -16,14 +16,13 @@ const CampaignCard = ({campaign, reviewsCount, newReviewsCount}: CampaignCardPro
         <div className="card-body">
           <div className={'flex justify-between'}>
             <div className={"pb-3"}>
-              <h2 className="card-title pb-3">{campaign.title}</h2>
-              <p>{campaign.description}</p>
+              <h2 className="card-title pb-3 text-2xl">{campaign.title}</h2>
+              <p className="card-title pb-3 text-lg">{campaign.description}</p>
             </div>
-            <AdjustmentsHorizontalIcon className={'h-6 w-6'}/>
           </div>
           <div className={"py-4 space-x-4 w-1/2 "}>
-            <span className="badge badge-primary">Total: {reviewsCount} </span>
-            <span className="badge badge-secondary">New:{newReviewsCount} </span>
+            <span className="badge badge-primary badge-lg">Total: {reviewsCount} </span>
+            <span className="badge badge-secondary badge-lg">New:{newReviewsCount} </span>
           </div>
         </div>
       </div>

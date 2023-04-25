@@ -5,6 +5,7 @@ module.exports = {
   content: [
     './index.html',
     './src/**/*.{js,jsx,ts,tsx}',
+    '../node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
   ],
   daisyui: {
     themes: [
@@ -84,6 +85,7 @@ module.exports = {
   },
   plugins: [
     require("daisyui"),
+    require('flowbite/plugin'),
     // eslint-disable-next-line global-require
     require('@tailwindcss/forms'),
     // add custom variant for expanding sidebar

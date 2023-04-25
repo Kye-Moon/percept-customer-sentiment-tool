@@ -1,8 +1,8 @@
-import {FormInputs} from "src/pages/CreateCampaignPage/CreateCampaignPage";
+import {FormData} from "src/pages/CreateCampaignPage/CreateCampaignPage";
 import {UseFormWatch} from "react-hook-form";
 
 export interface FormSectionProps {
-  watch: UseFormWatch<FormInputs>;
+  watch: UseFormWatch<FormData>;
   imagePreview?: string;
 }
 
@@ -15,7 +15,7 @@ export const MockLandingPageComponent = ({imagePreview, watch }:FormSectionProps
       <div className={'grid grid-rows-6 grid-cols-4  '}>
         <div className={'row-span-6 col-span-2  rounded-lb-3xl bg-neutral-50 '}>
           <div className="h-full ">
-            <div className={`h-4/5 text-base-100  flex flex-col place-content-center`}>
+            <div className={`h-4/5 text-base-500  flex flex-col place-content-center`}>
               <div className={'flex flex-col space-y-4   place-items-center'}>
                 <div className={'w-1/3 flex justify-center'}>
                   <img src={imagePreview} alt={'LOGO'} className=" rounded-3xl h-24 w-24 "/>
@@ -69,7 +69,7 @@ export const MockLandingPageComponent = ({imagePreview, watch }:FormSectionProps
                 <h1 className={`text-xs  font-bold flex`}>Upload image</h1>
               </div>
               <div className=" flex  justify-end space-y-2 w-full ">
-                <div className={' px-6 border text-xs rounded-lg '}> Submit</div>
+                <div className={' px-2 btn btn-outline btn-xs text-xs rounded-md '}> Submit</div>
               </div>
             </div>
           </div>

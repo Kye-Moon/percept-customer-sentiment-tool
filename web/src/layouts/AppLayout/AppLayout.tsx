@@ -3,6 +3,7 @@ import {useMemo, useState} from "react";
 import {CampaignContext} from "src/context/CampaignContext";
 import {useParams} from "@redwoodjs/router";
 import {useLazyQuery} from "@apollo/client";
+import {SideBarv2} from "src/components/SideBarv2";
 
 type AppLayoutProps = {
   children?: React.ReactNode
@@ -33,8 +34,6 @@ const AppLayout = ({children}: AppLayoutProps) => {
        console.log(e)
      }), [id]
    )
-
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   return <>
     <CampaignContext.Provider value={{campaign}}>
       {
@@ -57,13 +56,7 @@ const AppLayout = ({children}: AppLayoutProps) => {
             </div>
 
           ) : (
-            <div className="flex h-screen overflow-x-hidden">
-              {/* Sidebar */}
-              <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}/>
-              <div className="relative flex flex-col flex-1 pr-36 px-12  overflow-y-auto overflow-x-hidden">
-                {children}
-              </div>
-            </div>
+              <SideBarv2 children={children}/>
           )
       }
     </CampaignContext.Provider>

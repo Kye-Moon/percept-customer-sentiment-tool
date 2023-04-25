@@ -21,10 +21,6 @@ export const CreateEmbeddingStylesSection = ({setEmbeddingStyle, embeddingStyle}
           <input type="radio" name="radio-1" className="radio" onClick={()=>{setEmbeddingStyle(EmbeddingStyle.MasonryScroll)}} checked={embeddingStyle == EmbeddingStyle.MasonryScroll} />
           <label> Masonry Scroll</label>
         </div>
-        <div>
-          <input type="radio" name="radio-1" className="radio" onClick={()=>{setEmbeddingStyle(EmbeddingStyle.Tiled)}} checked={embeddingStyle == EmbeddingStyle.Tiled} />
-          <label> Tiled</label>
-        </div>
       </div>
     </>
   )

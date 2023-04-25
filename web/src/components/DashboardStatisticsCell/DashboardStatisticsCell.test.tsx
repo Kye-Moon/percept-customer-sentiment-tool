@@ -1,6 +1,6 @@
 import { render } from '@redwoodjs/testing/web'
-import { Loading, Empty, Failure, Success } from './CampaignHeaderCell'
-import { standard } from './CampaignHeaderCell.mock'
+import { Loading, Empty, Failure, Success } from './DashboardStatisticsCell'
+import { standard } from './DashboardStatisticsCell.mock'
 
 // Generated boilerplate tests do not account for all circumstances
 // and can fail without adjustments, e.g. Float and DateTime types.
@@ -8,7 +8,7 @@ import { standard } from './CampaignHeaderCell.mock'
 //        https://redwoodjs.com/docs/testing#testing-cells
 // https://redwoodjs.com/docs/testing#jest-expect-type-considerations
 
-describe('CampaignHeaderCell', () => {
+describe('DashboardStatisticsCell', () => {
   it('renders Loading successfully', () => {
     expect(() => {
       render(<Loading />)
@@ -35,7 +35,7 @@ describe('CampaignHeaderCell', () => {
 
   it('renders Success successfully', async () => {
     expect(() => {
-      render(<Success campaignHeader={standard().campaignHeader} />)
+      render(<Success dashboardStatistics={standard().dashboardStatistics} />)
     }).not.toThrow()
   })
 })

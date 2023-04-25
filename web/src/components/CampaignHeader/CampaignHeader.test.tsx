@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import WelcomeBanner from './WelcomeBanner'
+import CampaignHeader from './CampaignHeader'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
 
-describe('WelcomeBanner', () => {
+describe('CampaignHeader', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<WelcomeBanner />)
+      render(<CampaignHeader />)
     }).not.toThrow()
   })
 })

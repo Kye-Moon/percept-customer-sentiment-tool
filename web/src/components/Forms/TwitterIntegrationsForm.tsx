@@ -1,4 +1,4 @@
-// @flow
+
 import * as React from 'react';
 import TwitterLogo from "src/images/twitter_logo.png";
 import {CampaignIntergrationsFormProps} from "src/components/Forms/CreateCampaignIntergrationsForm";
@@ -7,7 +7,7 @@ export const TwitterIntegrationsForm = ({register}: CampaignIntergrationsFormPro
   return (
     <>
       {/* The button to open modal */}
-      <label htmlFor="twitter-modal" className="btn px-6 space-x-4">
+      <label htmlFor="twitter-modal" className="btn  space-x-4">
         <img alt={""} src={TwitterLogo} className={'w-6 h-6 rounded-full'}/>
         <h1>Twitter</h1>
       </label>

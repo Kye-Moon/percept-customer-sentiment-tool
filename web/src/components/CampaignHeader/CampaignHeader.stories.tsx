@@ -4,8 +4,8 @@
 // ```tsx
 // import type { ComponentStory } from '@storybook/react'
 //
-// export const generated: ComponentStory<typeof WelcomeBanner> = (args) => {
-//   return <WelcomeBanner {...args} />
+// export const generated: ComponentStory<typeof CampaignHeader> = (args) => {
+//   return <CampaignHeader {...args} />
 // }
 // ```
 //
@@ -13,13 +13,13 @@
 
 import type { ComponentMeta } from '@storybook/react'
 
-import WelcomeBanner from './WelcomeBanner'
+import CampaignHeader from './CampaignHeader'
 
 export const generated = () => {
-  return <WelcomeBanner />
+  return <CampaignHeader />
 }
 
 export default {
-  title: 'Components/WelcomeBanner',
-  component: WelcomeBanner,
-} as ComponentMeta<typeof WelcomeBanner>
+  title: 'Components/CampaignHeader',
+  component: CampaignHeader,
+} as ComponentMeta<typeof CampaignHeader>

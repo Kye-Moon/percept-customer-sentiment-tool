@@ -21,7 +21,7 @@ function ReviewCard({ tab,
 
 
   return (
-    <div className="shadow-xl border bg-white/75 rounded-xl ">
+    <div className="shadow-xl border bg-white/75 rounded-xl  overflow-x-hidden ">
       <div className="flex flex-col">
         {/* Image + name */}
         <div className="p-5">

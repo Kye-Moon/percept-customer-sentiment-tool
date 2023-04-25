@@ -150,7 +150,7 @@ export const Success = ({campaignReviews}: CellSuccessProps<FindReviewsGridQuery
     <div>
       {displayedReviews.map((campaignReview) => {
         return (
-          <div key={campaignReview.id} className={'mb-6 px-12 break-inside-avoid'}>
+          <div key={campaignReview.id} className={'mb-6 gap-6 break-inside-avoid'}>
             <ReviewCard
               tab={tab}
               campaignReview={campaignReview}
