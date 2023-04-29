@@ -1,4 +1,4 @@
-import {db} from "src/lib/utils/db";
+import {db} from "src/lib/db";
 
 export const checkUserOwnsCampaign = async (campaignId: number, userId: string) => {
   const campaign = await db.campaign.findUnique({

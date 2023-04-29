@@ -31,7 +31,7 @@ export const Success = ({campaign}: CellSuccessProps<FindCampaignHeaderQuery, Fi
   const {tab} = useParams()
   return (
     <div className="px-2 sm:px-6 py-8 w-full max-w-9xl mx-auto">
-      <CampaignHeader campaign={campaign}/> {/* CampaignContext is set when this renders */}
+      <CampaignHeader title={campaign.title} campaignId={campaign.id} description={campaign.description}/>
       {/* Reviews */}
       <div className={'divider'}></div>
       {(InboxTabs.includes(tab)) &&

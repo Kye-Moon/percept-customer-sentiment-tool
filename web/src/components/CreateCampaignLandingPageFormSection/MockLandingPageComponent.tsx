@@ -1,15 +1,12 @@
-import {FormData} from "src/pages/CreateCampaignPage/CreateCampaignPage";
-import {UseFormWatch} from "react-hook-form";
+import PerceptLogo from '../../images/PerceptLogo.png'
+import {CreateCampaignLandingPageFormSectionProps} from "src/interfaces";
+import {useFormContext} from "react-hook-form";
 
-export interface FormSectionProps {
-  watch: UseFormWatch<FormData>;
-  imagePreview?: string;
-}
-
-export const MockLandingPageComponent = ({imagePreview, watch }:FormSectionProps) => {
-  let pageTitle = watch('pageTitle') || "Page Title"
+export const MockLandingPageComponent = ({imagePreview}: CreateCampaignLandingPageFormSectionProps) => {
+  const { watch, formState: {errors}} = useFormContext();
+  let pageTitle = watch('pageTitle') || 'Page Title'
   let pageMessage = watch('pageMessage') || <progress className="progress w-56" value={0}></progress>
-
+  let logo = watch('logo') || PerceptLogo
   return (
     <div className="card w-full  shadow-xl">
       <div className={'grid grid-rows-6 grid-cols-4  '}>
@@ -18,7 +15,7 @@ export const MockLandingPageComponent = ({imagePreview, watch }:FormSectionProps
             <div className={`h-4/5 text-base-500  flex flex-col place-content-center`}>
               <div className={'flex flex-col space-y-4   place-items-center'}>
                 <div className={'w-1/3 flex justify-center'}>
-                  <img src={imagePreview} alt={'LOGO'} className=" rounded-3xl h-24 w-24 "/>
+                  <img src={imagePreview || logo} alt={'LOGO'} className=" rounded-3xl h-24 w-24 "/>
                 </div>
                 <div className="max-w-xl flex flex-col  ">
                   <h1 className="text-2xl font-bold flex justify-center">{pageTitle}</h1>

@@ -13,11 +13,8 @@ export const SideBarv2 = ({children}) => {
   return (
     campaign ? (
     <>
-
-
-
       <aside id="logo-sidebar"
-             className="fixed top-0 left-0 z-40 w-80 h-screen pt-8 pl-8 transition-transform -translate-x-full  border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+             className="fixed top-0 left-0 z-40 w-80 h-screen pt-8 pl-8 transition-transform -translate-x-full  border-r border-gray-200 sm:translate-x-0 "
              aria-label="Sidebar">
         <div className="flex">
           {/* Logo */}
@@ -82,7 +79,7 @@ export const SideBarv2 = ({children}) => {
               <h2 className={'font-semibold'}>LINKS</h2>
               <div className={'pl-4'}>
                 <SideBarMenuItem Icon={LinkIcon} title={"Public landing page"}
-                                 to={routes.campaignLandingPageTemplate({id: campaign.id})}/>
+                                 to={routes.campaignLandingPageTemplate({id: campaign.landingPageSlug})}/>
               </div>
             </div>
             <div className="space-y-2">

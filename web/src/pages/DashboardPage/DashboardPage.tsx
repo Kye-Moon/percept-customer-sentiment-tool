@@ -5,6 +5,8 @@ import CampaignsCell from "src/components/CampaignsCell/CampaignsCell";
 import {Link, routes} from "@redwoodjs/router";
 //@ts-ignore
 import DashboardStatisticsCell from "src/components/DashboardStatisticsCell/DashboardStatisticsCell";
+import {CreateEditAction} from "src/interfaces";
+
 
 
 const DashboardPage = () => {

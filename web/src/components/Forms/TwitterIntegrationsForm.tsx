@@ -1,9 +1,11 @@
 
 import * as React from 'react';
 import TwitterLogo from "src/images/twitter_logo.png";
-import {CampaignIntergrationsFormProps} from "src/components/Forms/CreateCampaignIntergrationsForm";
+import {CreateCampaignLandingPageFormSectionProps} from "src/components/CampaignForm/CampaignFormSection/CreateCampaignSection";
+import {useFormContext} from "react-hook-form";
 
-export const TwitterIntegrationsForm = ({register}: CampaignIntergrationsFormProps) => {
+export const TwitterIntegrationsForm = () => {
+  const { control, register, formState: { errors } } = useFormContext();
   return (
     <>
       {/* The button to open modal */}
@@ -13,7 +15,7 @@ export const TwitterIntegrationsForm = ({register}: CampaignIntergrationsFormPro
       </label>
 
       {/*Modal Toggle*/}
-      <input type="checkbox" id="twitter-modal" className="modal-toggle"/>
+      <input type="checkbox" id="twitter-modal" className="modal-toggle" />
 
       {/*Modal*/}
       <div className="modal">
@@ -36,7 +38,7 @@ export const TwitterIntegrationsForm = ({register}: CampaignIntergrationsFormPro
               <label className="label">
                 <span className="label-text">Company twitter handle</span>
               </label>
-              <input {...register("companyTwitterHandle")} type="text" placeholder="@example"
+              <input {...register("companyTwitterHandle")}  type="text" placeholder="@example"
                      className="input input-bordered"/>
             </div>
 

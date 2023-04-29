@@ -1,4 +1,4 @@
-import {ImageUploadProps, UploadResponse} from "types/interfaces";
+import {ImageUploadProps, UploadResponse} from "src/interfaces";
 
 export const convertToBase64 = (file: File) => new Promise((resolve, reject) => {
   const fileReader = new FileReader();

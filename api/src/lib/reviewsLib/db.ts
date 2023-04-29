@@ -1,4 +1,4 @@
-import {db} from "src/lib/utils/db";
+import {db} from "src/lib/db";
 import {CreateReviewInput, UpdateReviewInput} from "types/graphql";
 
 export const review_findManyWhere = (filter) => {

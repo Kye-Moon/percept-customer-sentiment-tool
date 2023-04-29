@@ -3,7 +3,7 @@ const integrationRequestPublisherService = require("src/lib/RequestPublisherLib/
 
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { handler } from './integrationRequestPublisher'
-import {db} from "src/lib/utils/db";
+import {db} from "src/lib/db";
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-functions

@@ -1,6 +1,6 @@
 import type {CampaignIntegrationRelationResolvers, MutationResolvers, QueryResolvers,} from 'types/graphql'
 
-import {db} from "src/lib/utils/db";
+import {db} from "src/lib/db";
 
 const axios = require('axios')
 

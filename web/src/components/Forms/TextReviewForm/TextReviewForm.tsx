@@ -7,7 +7,7 @@ import {useState} from "react";
 import {handleImageUploadOnChange, ImageUploadType, uploadImageToS3} from "src/utils/imageUtils";
 import {removeEmptyFields} from "src/utils/formUtils";
 import {useAuth} from "src/auth";
-import {UploadResponse} from "types/interfaces";
+import {UploadResponse} from "src/interfaces";
 import {createReview} from "src/services/recommendedMentions/reviews";
 import {useMutation} from "@redwoodjs/web";
 import {CREATE_REVIEW} from "src/graphql/mutations";

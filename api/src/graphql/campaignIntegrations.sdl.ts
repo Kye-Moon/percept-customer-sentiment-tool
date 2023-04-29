@@ -25,7 +25,6 @@ export const schema = gql`
   }
 
   input UpdateCampaignIntegrationInput {
-    campaignId: Int
     productHuntPostUrl: String
     productHuntReviewsUrl: String
     twitterCompanyName: String

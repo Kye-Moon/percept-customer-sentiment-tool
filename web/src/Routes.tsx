@@ -20,10 +20,12 @@ import {useAuth} from './auth'
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
+      <Route path="/edit-campaign" page={EditCampaignPage} name="editCampaign" />
       <Route path="/" page={HomePage} name="home"/>
       <Private unauthenticated={"home"}>
         <Route path="/leave-review/{id:string}" page={CampaignLandingPageTemplate} name="campaignLandingPageTemplate"/>
-        <Route path="/create-campaign" page={CreateCampaignPage} name="createCampaign"/>
+        <Route path="/campaign/create" page={CreateCampaignPage} name="createCampaign"/>
+        <Route path="/campaign/{id:Int}/edit" page={EditCampaignPage} name="editCampaign" />
         <Route path="/dashboard" page={DashboardPage} name="dashboard"/>
         <Set wrap={AppLayout}>
           <Route path="/your-reviews" page={YourReviewsPage} name="yourReviews"/>

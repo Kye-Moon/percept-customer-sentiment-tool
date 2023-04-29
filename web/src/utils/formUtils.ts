@@ -6,3 +6,7 @@ export function removeEmptyFields(data) {
   });
   return data;
 }
+
+export function setIntialValuesCreateEditCampaign(){
+
+}

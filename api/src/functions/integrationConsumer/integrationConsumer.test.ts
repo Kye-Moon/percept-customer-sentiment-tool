@@ -4,7 +4,7 @@ import { handler } from './integrationConsumer'
 import AWS from 'aws-sdk';
 import { mock } from 'jest-mock-extended'
 import {Context, DynamoDBStreamEvent} from "aws-lambda";
-import {db} from "src/lib/utils/db";
+import {db} from "src/lib/db";
 
 jest.mock('aws-sdk')
 

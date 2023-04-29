@@ -44,7 +44,6 @@ export const schema = gql`
   }
 
   input UpdateCampaignLandingPageInput {
-    campaignId: Int
     campaignSlug: String
     PageTitle: String
     pageMessage: String

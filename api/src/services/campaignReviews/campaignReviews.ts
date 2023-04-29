@@ -1,6 +1,6 @@
 import type {CampaignReviewRelationResolvers, MutationResolvers, QueryResolvers,} from 'types/graphql'
 
-import {db} from 'src/lib/utils/db'
+import {db} from 'src/lib/db'
 import {checkUserOwnsCampaign} from "src/lib/CampaignsLib/functions";
 
 export const campaignReviews: QueryResolvers['campaignReviews'] = async ({campaignId}) => {

@@ -15,8 +15,16 @@ export const CREATE_REVIEW = gql`
 
 
 export const CREATE_CAMPAIGN = gql`
-  mutation CreateCampaign($input: CreateCampaignInput!) {
+  mutation CreateCampaign($input: CreateOrUpdateCampaignInput!) {
     createCampaign(input: $input){
+      id
+    }
+  }
+`
+
+export const UPDATE_CAMPAIGN = gql`
+  mutation UpdateCampaign($id: Int!, $input: CreateOrUpdateCampaignInput!) {
+    updateCampaign(id: $id, input: $input){
       id
     }
   }

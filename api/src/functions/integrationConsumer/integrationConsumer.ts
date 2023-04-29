@@ -1,5 +1,5 @@
 import type {SQSEvent, Context, DynamoDBStreamEvent} from 'aws-lambda'
-import {db} from "src/lib/utils/db";
+import {db} from "src/lib/db";
 
 
 interface ReviewDto {

@@ -8,7 +8,7 @@ import generateGraphiQLHeader from 'src/lib/generateGraphiQLHeader'
 
 import { getCurrentUser } from 'src/lib/utils/auth'
 
-import { db } from 'src/lib/utils/db'
+import { db } from 'src/lib/db'
 import { logger } from 'src/lib/utils/logger'
 
 export const handler = createGraphQLHandler({

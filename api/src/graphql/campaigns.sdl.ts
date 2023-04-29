@@ -10,6 +10,7 @@ export const schema = gql`
     landingPageSlug: String!
     integrations: [CampaignIntegration]
     campaignReviews: [CampaignReview]
+    campaignLandingPage: CampaignLandingPage
   }
 
   type Query {
@@ -17,8 +18,7 @@ export const schema = gql`
     campaign(id: Int!): Campaign @skipAuth
   }
 
-  input CreateCampaignInput {
-    userId: String!
+  input CreateOrUpdateCampaignInput {
     title: String!
     description: String!
     integrations: CampaignIntegrationInput
@@ -40,17 +40,9 @@ export const schema = gql`
     companyTwitterHandle: String
   }
 
-  input UpdateCampaignInput {
-    createAt: DateTime
-    userId: String
-    status: String
-    title: String
-    description: String
-  }
-
   type Mutation {
-    createCampaign(input: CreateCampaignInput!): Campaign! @skipAuth
-    updateCampaign(id: Int!, input: UpdateCampaignInput!): Campaign!
+    createCampaign(input: CreateOrUpdateCampaignInput!): Campaign! @skipAuth
+    updateCampaign(id: Int!, input: CreateOrUpdateCampaignInput!): Campaign!
       @requireAuth
     deleteCampaign(id: Int!): Campaign! @requireAuth
   }

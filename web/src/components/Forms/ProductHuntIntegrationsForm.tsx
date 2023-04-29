@@ -1,8 +1,10 @@
 import React from 'react';
 import ProductHuntLogo from "src/images/product-hunt-logo.png";
-import {CampaignIntergrationsFormProps} from "src/components/Forms/CreateCampaignIntergrationsForm";
+import {CreateCampaignLandingPageFormSectionProps} from "src/components/CampaignForm/CampaignFormSection/CreateCampaignSection";
+import {useFormContext} from "react-hook-form";
 
-const ProductHuntIntegrationsForm = ({register}: CampaignIntergrationsFormProps) => {
+const ProductHuntIntegrationsForm = () => {
+  const { control, register, formState: { errors } } = useFormContext();
   return (
     <>
       {/* The button to open modal */}
@@ -12,10 +14,11 @@ const ProductHuntIntegrationsForm = ({register}: CampaignIntergrationsFormProps)
       </label>
 
       {/*Modal Toggle*/}
-      <input type="checkbox" id="product-hunt-modal" className="modal-toggle"/>
+      <input role={"phModalToggle"} type="checkbox" id="product-hunt-modal" className="modal-toggle"/>
+
 
       {/*Modal*/}
-      <div className="modal ">
+      <div role={"productHuntIntegrationsModal"} className="modal ">
         <div className="modal-box bg-primary w-9/12 max-w-2xl ">
           <label htmlFor="product-hunt-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
           <h3 className="text-lg font-bold">Product Hunt </h3>

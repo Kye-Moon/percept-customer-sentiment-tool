@@ -1,4 +1,10 @@
-export const CreateCampaignDetailsForm = ({register, errors}) => {
+import {FieldErrors, useFormContext, UseFormRegister, UseFormWatch} from "react-hook-form";
+import {TextField} from "@redwoodjs/forms";
+
+
+export const CreateCampaignDetailsForm = () => {
+  const { control, register, formState: { errors,defaultValues } } = useFormContext();
+
   return (
     <>
       <div className={"grid grid-cols-1 space-y-8  align-middle"}>
@@ -9,7 +15,7 @@ export const CreateCampaignDetailsForm = ({register, errors}) => {
           <label className="label">
             <span className="label-text">Campaign Name</span>
           </label>
-          <input {...register("title",{ required: true})} type="text" placeholder="eg. Reviews for website" className="input input-bordered w-full "/>
+          <input role={"campaignName"} {...register("title",{ required: true})}  type="text"  placeholder="eg. Reviews for website" className="input input-bordered w-full "/>
           {errors.title && <span className={'text-error'}>This field is required</span>}
         </div>
         {/*Description*/}
@@ -17,7 +23,7 @@ export const CreateCampaignDetailsForm = ({register, errors}) => {
           <label className="label">
             <span className="label-text">Description</span>
           </label>
-          <input {...register("description")} type="text" placeholder="Type here" className="input input-bordered w-full "/>
+          <input {...register("description")} type="text"  placeholder="Type here" className="input input-bordered w-full "/>
           {errors.description && <span className={'text-error'}>This field is required</span>}
         </div>
       </div>
